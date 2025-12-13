@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newsletter - My Green Lab</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Use Inter font family -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            background-color: #ffffff;
+        }
+
+        /* Custom Colors based on video */
+        .color-green-primary { background-color: #4CAF50; } /* Main Green */
+        .color-green-light { background-color: #99D98C; } /* Lighter Green Circle/Accent */
+        .color-blue-light { background-color: #B2EBF2; } /* Light Blue Circle/Accent */
+        .color-purple-dark-banner { background-color: #4A148C; } /* Deep Purple Footer/Accent */
+        .text-green-primary { color: #4CAF50; }
+        .border-green-primary { border-color: #4CAF50; }
+
+        /* Keyframes for Hover/Focus Animation on Header Links */
+        .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: #4CAF50;
+            transition: width .3s;
+            margin-top: 2px;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+    </style>
+    <!-- Lucide Icons CDN for easy icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-40 bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="index.html" class="flex items-center space-x-2 text-xl font-bold text-gray-800">
+                        <div class="w-6 h-6 rounded-full color-green-primary"></div>
+                        <span>my green lab.</span>
+                    </a>
+                </div>
+                <!-- Desktop Links -->
+                <nav class="hidden md:flex space-x-8 text-sm font-medium">
+                    <a href="#" class="nav-link text-gray-700 hover:text-green-primary">How to Green Your Lab</a>
+                    <a href="index.html" class="nav-link text-gray-700 hover:text-green-primary">Programs</a>
+                    <a href="resources.html" class="nav-link text-gray-700 hover:text-green-primary">Resources</a>
+                    <a href="#" class="nav-link text-gray-700 hover:text-green-primary">The Beaker Blog</a>
+                    <a href="#" class="nav-link text-gray-700 hover:text-green-primary">About Us</a>
+                    <a href="#" class="nav-link text-gray-700 hover:text-green-primary">Get Involved</a>
+                </nav>
+                <!-- CTA -->
+                <div class="hidden md:block">
+                    <button class="flex items-center text-gray-700 text-sm font-medium hover:text-green-primary transition duration-300">
+                        Give Now
+                        <i data-lucide="heart" class="w-4 h-4 ml-1"></i>
+                    </button>
+                </div>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-500 hover:text-green-primary focus:outline-none">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 py-4">
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">How to Green Your Lab</a>
+            <a href="index.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Programs</a>
+            <a href="resources.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Resources</a>
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">The Beaker Blog</a>
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">About Us</a>
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Get Involved</a>
+            <button class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center">
+                Give Now
+                <i data-lucide="heart" class="w-4 h-4 ml-1"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-16 pb-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-6">
+                    Stay Connected
+                </h1>
+                <p class="text-base text-gray-600 mb-8 max-w-3xl mx-auto">
+                    Join our newsletter to receive the latest updates on laboratory sustainability, program announcements, success stories, and exclusive content.
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Newsletter Signup Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <!-- Content Column -->
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-900 mb-6">
+                        Why Subscribe to Our Newsletter?
+                    </h2>
+                    
+                    <div class="space-y-6">
+                        <!-- Benefit 1 -->
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-full color-green-primary flex items-center justify-center flex-shrink-0 mr-4">
+                                <i data-lucide="zap" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900 mb-2">Latest Updates</h3>
+                                <p class="text-gray-700">Be the first to know about new programs, certification updates, and sustainability initiatives.</p>
+                            </div>
+                        </div>
+
+                        <!-- Benefit 2 -->
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-full color-green-primary flex items-center justify-center flex-shrink-0 mr-4">
+                                <i data-lucide="book-open" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900 mb-2">Expert Insights</h3>
+                                <p class="text-gray-700">Receive tips, best practices, and research findings from laboratory sustainability experts.</p>
+                            </div>
+                        </div>
+
+                        <!-- Benefit 3 -->
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-full color-green-primary flex items-center justify-center flex-shrink-0 mr-4">
+                                <i data-lucide="users" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900 mb-2">Community Stories</h3>
+                                <p class="text-gray-700">Learn from success stories and case studies from laboratories around the world.</p>
+                            </div>
+                        </div>
+
+                        <!-- Benefit 4 -->
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-full color-green-primary flex items-center justify-center flex-shrink-0 mr-4">
+                                <i data-lucide="calendar" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900 mb-2">Event Invitations</h3>
+                                <p class="text-gray-700">Get exclusive invitations to webinars, workshops, and networking events.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Column -->
+                <div>
+                    <div class="bg-gray-50 p-8 rounded-xl">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6">Subscribe Now</h3>
+                        
+                        <form action="#" method="POST" class="space-y-6">
+                            <!-- Name -->
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                                <input id="name" name="name" type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-green-primary focus:border-green-primary transition duration-150" placeholder="John Doe">
+                            </div>
+
+                            <!-- Email -->
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                                <input id="email" name="email" type="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-green-primary focus:border-green-primary transition duration-150" placeholder="john@example.com">
+                            </div>
+
+                            <!-- Organization -->
+                            <div>
+                                <label for="organization" class="block text-sm font-medium text-gray-700 mb-2">Organization (Optional)</label>
+                                <input id="organization" name="organization" type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-green-primary focus:border-green-primary transition duration-150" placeholder="University or Company Name">
+                            </div>
+
+                            <!-- Interests -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Areas of Interest</label>
+                                <div class="space-y-2">
+                                    <label class="flex items-center">
+                                        <input type="checkbox" name="interests[]" value="certification" class="h-4 w-4 text-green-primary focus:ring-green-primary border-gray-300 rounded mr-2">
+                                        <span class="text-sm text-gray-700">My Green Lab Certification</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" name="interests[]" value="act" class="h-4 w-4 text-green-primary focus:ring-green-primary border-gray-300 rounded mr-2">
+                                        <span class="text-sm text-gray-700">ACT Ecolabel</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" name="interests[]" value="accredited" class="h-4 w-4 text-green-primary focus:ring-green-primary border-gray-300 rounded mr-2">
+                                        <span class="text-sm text-gray-700">Accredited Professionals</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" name="interests[]" value="resources" class="h-4 w-4 text-green-primary focus:ring-green-primary border-gray-300 rounded mr-2">
+                                        <span class="text-sm text-gray-700">Resources & Guides</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Consent -->
+                            <div>
+                                <label class="flex items-start">
+                                    <input type="checkbox" name="consent" required class="h-4 w-4 text-green-primary focus:ring-green-primary border-gray-300 rounded mt-1 mr-2">
+                                    <span class="text-sm text-gray-700">I agree to receive occasional newsletters and updates from My Green Lab. I understand I can unsubscribe at any time.</span>
+                                </label>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div>
+                                <button type="submit" class="w-full py-3 px-4 text-lg font-semibold rounded-full color-green-primary text-white hover:bg-green-700 transition duration-300 shadow-lg">
+                                    Subscribe to Newsletter
+                                </button>
+                            </div>
+                        </form>
+
+                        <!-- Privacy Note -->
+                        <p class="text-xs text-gray-500 mt-4 text-center">
+                            We respect your privacy. Your information will be used in accordance with our <a href="data_privacy.html" class="text-green-primary hover:underline">Data Privacy Policy</a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 color-blue-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">
+                    What Our Subscribers Say
+                </h2>
+                <p class="text-gray-700 max-w-3xl mx-auto">
+                    Join thousands of laboratory professionals who rely on our newsletter for the latest sustainability insights.
+                </p>
+            </div>
+
+            <!-- Testimonials Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <img src="https://placehold.co/60x60/4CAF50/ffffff?text=JD" alt="Dr. Jane Doe" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Dr. Jane Doe</h4>
+                            <p class="text-sm text-gray-600">Research Scientist</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">"The My Green Lab newsletter keeps me updated on the latest sustainability practices and has helped our lab reduce waste by 30%."</p>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <img src="https://placehold.co/60x60/4CAF50/ffffff?text=MS" alt="Mark Smith" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Mark Smith</h4>
+                            <p class="text-sm text-gray-600">Lab Manager</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">"I love the practical tips and case studies. The newsletter is always relevant and actionable for our laboratory operations."</p>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <img src="https://placehold.co/60x60/4CAF50/ffffff?text=EJ" alt="Emily Johnson" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Emily Johnson</h4>
+                            <p class="text-sm text-gray-600">Sustainability Coordinator</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">"The expert insights and research findings in the newsletter have been invaluable for implementing our green lab initiatives."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (Consistent with other page) -->
+    <footer class="bg-gray-800 text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-gray-700 pb-10 mb-8">
+                <!-- Logo/Branding -->
+                <div>
+                    <a href="index.html" class="flex items-center space-x-2 text-xl font-bold text-white mb-6">
+                        <div class="w-6 h-6 rounded-full color-green-primary"></div>
+                        <span>my green lab.</span>
+                    </a>
+                    <p class="text-sm text-gray-400">&copy; 2025 My Green Lab</p>
+                </div>
+
+                <!-- Key Programs -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-green-primary">KEY PROGRAMS</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="index.html" class="hover:text-white transition">My Green Lab Certification</a></li>
+                        <li><a href="act_ecolabel.html" class="hover:text-white transition">ACT® Ecolabel</a></li>
+                        <li><a href="#" class="hover:text-white transition">ECoLab®</a></li>
+                        <li><a href="accredited_professionals.html" class="hover:text-white transition">Accreditations</a></li>
+                        <li><a href="resources.html" class="hover:text-white transition">Resources</a></li>
+                    </ul>
+                </div>
+
+                <!-- About Us -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-green-primary">ABOUT US</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">Contact Us</a></li>
+                        <li><a href="newsletter.html" class="hover:text-white transition">Newsletter</a></li>
+                        <li><a href="data_privacy.html" class="hover:text-white transition">Data Privacy</a></li>
+                        <li><a href="#" class="hover:text-white transition">Terms and Conditions</a></li>
+                        <li><a href="#" class="hover:text-white transition">Cookie Preferences</a></li>
+                    </ul>
+                </div>
+
+                <!-- Join Our Mailing List -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-green-primary">JOIN OUR MAILING LIST</h4>
+                    <p class="text-sm text-gray-400 mb-4">Stay in touch and receive occasional news and updates on programs and initiatives, partner success stories, certification tips, and more!</p>
+                    <button class="w-full py-2 bg-green-primary text-white font-semibold rounded-lg hover:bg-green-600 transition duration-300">SIGN UP</button>
+                    
+                    <h4 class="text-lg font-semibold mt-8 mb-4 text-green-primary">FOLLOW US</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i data-lucide="linkedin" class="w-6 h-6"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i data-lucide="twitter" class="w-6 h-6"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i data-lucide="instagram" class="w-6 h-6"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i data-lucide="youtube" class="w-6 h-6"></i></a>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center text-sm text-gray-500 mt-8">
+                &copy; 2025 My Green Lab. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Interactivity -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // 1. Mobile Menu Toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // 2. Newsletter form submission
+        document.querySelector('form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+            // Basic validation
+            if (data.name && data.email && data.consent) {
+                // Success message
+                alert('Thank you for subscribing to our newsletter! You will receive a confirmation email shortly.');
+                event.target.reset();
+            } else {
+                alert('Please fill in all required fields and accept the consent checkbox.');
+            }
+        });
+
+    </script>
+</body>
+</html>
