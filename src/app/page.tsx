@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import Link from 'next/link';
 
 export default function HomePage() {
   useEffect(() => {
@@ -14,48 +15,10 @@ export default function HomePage() {
         }
       });
     });
-
-    // Handle placeholder links
-    const buttons = document.querySelectorAll('a[href="#"], button[data-demo]');
-    buttons.forEach(button => {
-      button.addEventListener('click', (e) => {
-        e.preventDefault();
-        if ((button as HTMLElement).innerText !== 'Close') {
-          alert("This link/button is functional but leads to a placeholder URL.");
-        }
-      });
-    });
   }, []);
 
   return (
     <div className="font-sans text-gray-900 bg-white">
-      {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
-          <div className="flex items-center space-x-2">
-            <div className="w-7 h-7 rounded-full bg-mgl-lime flex items-center justify-center shadow-md">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" className="w-4 h-4">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
-              </svg>
-            </div>
-            <span className="text-2xl font-bold logo-text">my green lab.</span>
-          </div>
-
-          <div className="hidden lg:flex space-x-6 text-sm font-semibold text-gray-700">
-            <a href="#green-lab" className="hover:text-mgl-lime transition">How to Green Your Lab</a>
-            <a href="#programs" className="hover:text-mgl-lime transition">Programs</a>
-            <a href="#resources" className="hover:text-mgl-lime transition">Resources</a>
-            <a href="#blog" className="hover:text-mgl-lime transition">The Beaker Blog</a>
-            <a href="#about" className="hover:text-mgl-lime transition">About Us</a>
-            <a href="#get-involved" className="hover:text-mgl-lime transition">Get Involved</a>
-          </div>
-
-          <a href="#" className="hidden sm:inline-flex items-center text-xs sm:text-sm font-bold text-mgl-lime hover:opacity-80 transition">
-            GIVE NOW
-          </a>
-        </div>
-      </nav>
-
       <main>
         {/* HERO Section */}
         <section id="green-lab" className="relative overflow-hidden">
@@ -69,13 +32,13 @@ export default function HomePage() {
                 At My Green Lab® we are igniting a global shift toward environmentally responsible scientific research
                 by helping labs to reduce their environmental impact.
               </p>
-              <a href="#"
+              <Link href="/certification"
                  className="inline-flex items-center px-8 py-3 sm:py-3.5 bg-mgl-lime text-white text-xs sm:text-sm font-bold rounded-full shadow-lg hover:bg-opacity-90 transition w-fit">
                 GREEN YOUR LAB
                 <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                 </svg>
-              </a>
+              </Link>
             </div>
 
             {/* RIGHT — FULL BLEED HERO IMAGE */}
@@ -457,94 +420,6 @@ export default function HomePage() {
           </div>
         </section>
       </main>
-
-      {/* Footer */}
-      <footer id="resources" className="bg-white py-12 border-t border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
-            <div className="lg:col-span-1">
-              <div className="flex items-center space-x-2 mb-6">
-                <div className="w-7 h-7 rounded-full bg-mgl-lime flex items-center justify-center shadow-md">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" className="w-4 h-4">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
-                  </svg>
-                </div>
-                <span className="text-xl font-bold logo-text">my green lab.</span>
-              </div>
-            </div>
-
-            <div className="md:col-span-1 lg:col-span-2 grid grid-cols-2 sm:grid-cols-3 gap-8">
-              <div>
-                <h4 className="text-sm font-bold uppercase tracking-wider text-mgl-dark mb-4">KEY PROGRAMS</h4>
-                <ul className="space-y-3 text-sm text-gray-700">
-                  <li><a href="/certification" className="hover:text-mgl-lime transition">My Green Lab® Certification</a></li>
-                  <li><a href="/act-ecolabel" className="hover:text-mgl-lime transition">ACT® Ecolabel</a></li>
-                  <li><a href="/accredited-professionals" className="hover:text-mgl-lime transition">Accredited Professionals</a></li>
-                  <li><a href="/resources" className="hover:text-mgl-lime transition">Resources</a></li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="text-sm font-bold uppercase tracking-wider text-mgl-dark mb-4">ABOUT US</h4>
-                <ul className="space-y-3 text-sm text-gray-700">
-                  <li><a href="/contact" className="hover:text-mgl-lime transition">Contact Us</a></li>
-                  <li><a href="/follow" className="hover:text-mgl-lime transition">Follow Us</a></li>
-                  <li><a href="/newsletter" className="hover:text-mgl-lime transition">Newsletter</a></li>
-                  <li><a href="/data-privacy" className="hover:text-mgl-lime transition">Data Privacy</a></li>
-                  <li><a href="#" className="hover:text-mgl-lime transition">Terms and Conditions</a></li>
-                  <li><a href="#" className="hover:text-mgl-lime transition">Cookie Preferences</a></li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="text-sm font-bold uppercase tracking-wider text-mgl-dark mb-4">LEARN MORE</h4>
-                <ul className="space-y-3 text-sm text-gray-700">
-                  <li><a href="/events" className="hover:text-mgl-lime transition">Events</a></li>
-                  <li><a href="#" className="hover:text-mgl-lime transition">Careers</a></li>
-                  <li><a href="/strategic-plan" className="hover:text-mgl-lime transition">Our Strategic Plan</a></li>
-                  <li><a href="/sitemap" className="hover:text-mgl-lime transition">Sitemap</a></li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="md:col-span-2 lg:col-span-2 mt-8 md:mt-0">
-              <h4 className="text-sm font-bold uppercase tracking-wider text-mgl-dark mb-4">Join our mailing list</h4>
-              <p className="text-sm text-gray-700 mb-6 max-w-sm">
-                Stay in touch and receive occasional news and updates on programs and initiatives, partner success stories,
-                certification tips, and more!
-              </p>
-              <button className="px-6 py-3 bg-mgl-lime text-white font-bold text-sm rounded-lg hover:bg-opacity-90 transition">
-                SIGN UP
-              </button>
-            </div>
-          </div>
-
-          <div className="mt-12 pt-8 border-t border-gray-100 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-500 gap-4">
-            <p>&copy; 2025 My Green Lab. All Rights Reserved.</p>
-            <div className="flex space-x-4 items-center">
-              <p className="text-sm font-bold uppercase tracking-wider text-mgl-dark">FOLLOW US</p>
-              <a href="#" className="text-mgl-dark hover:text-mgl-lime transition transform hover:-translate-y-0.5">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M22 4.01c-.72.32-1.5.54-2.32.64.83-.5 1.47-1.3 1.77-2.26-.78.47-1.64.81-2.55.99-.73-.78-1.78-1.27-2.95-1.27-2.22 0-4.02 1.8-4.02 4.02 0 .31.03.61.1.9C7.1 8.79 4.17 7.15 2.2 4.67c-.32.54-.5 1.17-.5 1.84 0 1.4.7 2.63 1.76 3.35-.65 0-1.26-.2-1.8-.5v.05c0 1.95 1.39 3.58 3.24 3.96-.34.1-.7.16-1.07.16-.26 0-.52-.03-.77-.08.51 1.6 2 2.77 3.77 2.81-1.38 1.08-3.13 1.72-5.02 1.72-.32 0-.64-.02-.95-.06 1.8 1.15 3.94 1.82 6.22 1.82 7.46 0 11.53-6.17 11.53-11.52 0-.17-.0-.34-.01-.51.79-.57 1.47-1.28 2.01-2.09z"/>
-                </svg>
-              </a>
-              <a href="#" className="text-mgl-dark hover:text-mgl-lime transition transform hover:-translate-y-0.5">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07c3.252.148 4.771 1.691 4.919 4.919.058 1.265.07 1.645.07 4.849 0 3.204-.012 3.584-.07 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.645.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.779-1.695-4.919-4.92-.058-1.265-.07-1.644-.07-4.848 0-3.204.013-3.583.07-4.848.149-3.225 1.664-4.771 4.919-4.919 1.266-.057 1.645-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.528-6.98 6.98C.014 8.333 0 8.741 0 12c0 3.259.014 3.667.072 4.947.2 4.358 2.528 6.78 6.98 6.98 1.28.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.947-.072 4.354-.2 6.78-2.528 6.979-6.98.058-1.28.072-1.689.072-4.948 0-3.259-.014-3.668-.072-4.947-.196-4.354-2.528-6.78-6.979-6.979-1.28-.059-1.689-.073-4.948-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a4 4 0 110-8 4 4 0 010 8z"/><circle cx="18.5" cy="5.5" r="1.5"/>
-                </svg>
-              </a>
-              <a href="#" className="text-mgl-dark hover:text-mgl-lime transition transform hover:-translate-y-0.5">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12c-.93 0-1.7-.77-1.7-1.7 0-.93.77-1.7 1.7-1.7.93 0 1.7.77 1.7 1.7 0 .93-.77 1.7-1.7 1.7zm13.5 12h-3v-5.64c0-3.15-4 2.91-4-1.36 0-1.69 1.19-2.75 2.54-2.75 1.25 0 1.77.78 1.77 1.95v7.8zm-5-11h-3v1h3v-1z"/>
-                </svg>
-              </a>
-              <a href="#" className="text-mgl-dark hover:text-mgl-lime transition transform hover:-translate-y-0.5">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07c3.252.148 4.771 1.691 4.919 4.919.058 1.265.07 1.645.07 4.849 0 3.204-.012 3.584-.07 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.645.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.779-1.695-4.919-4.92-.058-1.265-.07-1.644-.07-4.848 0-3.204.013-3.583.07-4.848.149-3.225 1.664-4.771 4.919-4.919 1.266-.057 1.645-.07 4.85-.07zm-4.32 1.637l-4.15 4.15v6.526l4.15 4.15h6.526l4.15-4.15v-6.526l-4.15-4.15h-6.526z"/>
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

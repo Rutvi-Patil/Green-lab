@@ -1,179 +1,72 @@
+'use client';
+
+import React from 'react';
 import Link from 'next/link';
+import { FlaskConical } from 'lucide-react';
 
-const Footer = () => {
-  const keyPrograms = [
-    { href: "/certification", label: "My Green Lab Certification" },
-    { href: "/act-ecolabel", label: "ACT® Ecolabel" },
-    { href: "/accredited-professionals", label: "Accredited Professionals" },
-    { href: "/resources", label: "Resources" },
-  ];
-
-  const aboutUs = [
-    { href: "/contact", label: "Contact Us" },
-    { href: "/follow", label: "Follow Us" },
-    { href: "/newsletter", label: "Newsletter" },
-    { href: "/terms", label: "Terms and Conditions" },
-    { href: "/privacy", label: "Data Privacy" },
-    { href: "/cookies", label: "Cookie Preferences" },
-  ];
-
-  const learnMore = [
-    { href: "/events", label: "Events" },
-    { href: "/careers", label: "Careers" },
-    { href: "/strategic-plan", label: "Our Strategic Plan" },
-    { href: "/sitemap", label: "Sitemap" },
-  ];
-
-  const socialLinks = [
-    {
-      name: "LinkedIn",
-      href: "https://linkedin.com/company/my-green-lab",
-      icon: (
-        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 16h-2v-6h2v6zm-1-6.891c-.607 0-1.1-.496-1.1-1.109 0-.612.492-1.109 1.1-1.109s1.1.497 1.1 1.109c0 .613-.493 1.109-1.1 1.109zm8 6.891h-1.998v-2.861c0-1.881-2.002-1.722-2.002 0v2.861h-2v-6h2v1.093c.872-1.616 4-1.736 4 1.548v3.359z"/>
-        </svg>
-      ),
-    },
-    {
-      name: "Twitter",
-      href: "https://twitter.com/mygreenlab",
-      icon: (
-        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6.066 9.645c-.15 4.354-2.227 8.017-6.066 8.017-1.488 0-2.868-.458-4.043-1.233 1.544.172 3.097-.243 4.414-1.189-1.484-.047-2.828-.971-3.264-2.279.44.08.86.062 1.257-.043-1.503-.324-2.766-1.62-2.766-3.204 1-.502 2.7-.272 3.32.107-1.054-.919-2.073-2.613-2.073-4.103 0-1.08.312-2.184 1.139-3.098 1.545 1.7 3.627 2.844 5.92 2.943-.076-.231-.13-.473-.13-.722 0-1.742 1.411-3.153 3.153-3.153.916 0 1.748.384 2.336 1.004.72-.14 1.405-.426 2.016-.767-.233.729-.757 1.396-1.428 1.796 1.251-.157 2.031-.482 2.548-.684z"/>
-        </svg>
-      ),
-    },
-    {
-      name: "Instagram",
-      href: "https://instagram.com/mygreenlab",
-      icon: (
-        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm4.965-10.405a1.44 1.44 0 112.881.001 1.44 1.44 0 01-2.881-.001z"/>
-        </svg>
-      ),
-    },
-    {
-      name: "YouTube",
-      href: "https://youtube.com/c/mygreenlab",
-      icon: (
-        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm4.441 16.892c-2.102.144-6.784.144-8.883 0-2.276-.156-2.541-1.27-2.558-4.892.017-3.629.285-4.736 2.558-4.892 2.099-.144 6.782-.144 8.883 0 2.277.156 2.541 1.27 2.559 4.892-.018 3.629-.285 4.736-2.559 4.892zm-6.441-7.234l4.917 2.338-4.917 2.346v-4.684z"/>
-        </svg>
-      ),
-    },
-  ];
-
+const Footer: React.FC = () => {
   return (
-    <footer className="bg-mgl-dark text-white pt-16 pb-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 border-b border-gray-700 pb-10 mb-8">
-          {/* Logo/Branding */}
-          <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center space-x-2 text-xl font-bold text-white mb-6">
-              <div className="w-6 h-6 rounded-full bg-mgl-lime"></div>
+    <footer className="bg-gray-100 py-16">
+      <div className="container mx-auto max-w-7xl px-4">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-10">
+          {/* Logo and Copyright */}
+          <div className="md:col-span-1">
+            <Link href="/" className="flex items-center space-x-2 text-xl font-bold text-green-700 mb-4 hover:text-green-800 transition">
+              <FlaskConical className="w-6 h-6" />
               <span>my green lab.</span>
             </Link>
-            <p className="text-sm text-gray-400 mb-4">
-              Accelerating sustainability and environmental responsibility in scientific laboratories worldwide.
-            </p>
-            <p className="text-sm text-gray-400">&copy; 2025 My Green Lab</p>
+            <p className="text-sm text-gray-500 mt-8">© 2025 My Green Lab</p>
           </div>
 
-          {/* Key Programs */}
+          {/* Links Column 1 */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-mgl-lime">KEY PROGRAMS</h4>
-            <ul className="space-y-2 text-sm text-gray-400">
-              {keyPrograms.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="hover:text-white transition-colors duration-200"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
+            <h4 className="text-base font-bold text-gray-800 mb-4">KEY PROGRAMS</h4>
+            <ul className="space-y-2 text-sm text-gray-600">
+              <li><Link href="/certification" className="hover:text-green-700">My Green Lab Certification</Link></li>
+              <li><Link href="/act-ecolabel" className="hover:text-green-700">ACT® Ecolabel</Link></li>
+              <li><Link href="/accredited-professionals" className="hover:text-green-700">Accredited Professionals</Link></li>
+              <li><Link href="/resources" className="hover:text-green-700">Resources</Link></li>
             </ul>
           </div>
 
-          {/* About Us */}
+          {/* Links Column 2 */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-mgl-lime">ABOUT US</h4>
-            <ul className="space-y-2 text-sm text-gray-400">
-              {aboutUs.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="hover:text-white transition-colors duration-200"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
+            <h4 className="text-base font-bold text-gray-800 mb-4">ABOUT US</h4>
+            <ul className="space-y-2 text-sm text-gray-600">
+              <li><Link href="/contact" className="hover:text-green-700">Contact Us</Link></li>
+              <li><Link href="/follow" className="hover:text-green-700">Follow Us</Link></li>
+              <li><Link href="/newsletter" className="hover:text-green-700">Newsletter</Link></li>
+              <li><Link href="/data-privacy" className="hover:text-green-700">Data Privacy</Link></li>
+              <li><Link href="/about" className="hover:text-green-700">About Us</Link></li>
             </ul>
           </div>
 
-          {/* Learn More */}
+          {/* Links Column 3 */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-mgl-lime">LEARN MORE</h4>
-            <ul className="space-y-2 text-sm text-gray-400">
-              {learnMore.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="hover:text-white transition-colors duration-200"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
+            <h4 className="text-base font-bold text-gray-800 mb-4">LEARN MORE</h4>
+            <ul className="space-y-2 text-sm text-gray-600">
+              <li><Link href="/events" className="hover:text-green-700">Events</Link></li>
+              <li><Link href="/strategic-plan" className="hover:text-green-700">Our Strategic Plan</Link></li>
+              <li><Link href="/sitemap" className="hover:text-green-700">Sitemap</Link></li>
             </ul>
           </div>
 
-          {/* Newsletter & Social */}
-          <div className="lg:col-span-1">
-            <h4 className="text-lg font-semibold mb-4 text-mgl-lime">JOIN OUR MAILING LIST</h4>
-            <p className="text-sm text-gray-400 mb-4">
-              Stay in touch and receive occasional news and updates on programs and initiatives, partner success stories, certification tips, and more!
-            </p>
-            <Link
-              href="/newsletter"
-              className="inline-block w-full py-2 bg-mgl-lime text-mgl-dark font-semibold rounded-lg hover:bg-opacity-90 transition-colors duration-200 text-center"
-            >
+          {/* Mailing List/Social */}
+          <div className="md:col-span-1">
+            <h4 className="text-base font-bold text-gray-800 mb-4">Join our mailing list</h4>
+            <p className="text-sm text-gray-600 mb-4">Stay in touch and receive occasional news and updates on programs and initiatives, partner success stories, certification tips, and more!</p>
+            <Link href="/newsletter" className="w-full text-base font-bold text-white bg-green-700 py-3 rounded-full hover:bg-green-800 transition duration-300 text-center inline-block">
               SIGN UP
             </Link>
-            
-            <h4 className="text-lg font-semibold mt-8 mb-4 text-mgl-lime">FOLLOW US</h4>
-            <div className="flex space-x-4">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.name}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white transition-colors duration-200"
-                  aria-label={social.name}
-                >
-                  {social.icon}
-                </a>
-              ))}
+            <div className="mt-6">
+              <h4 className="text-base font-bold text-gray-800 mb-3">FOLLOW US</h4>
+              <div className="flex space-x-3">
+                {/* Mock Social Icons */}
+                <Link href="#" className="text-gray-600 hover:text-green-700"><svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.656 9.125 8.438 9.874V14.89h-2.28v-2.83h2.28v-2.181c0-2.275 1.4-3.52 3.57-3.52 1.025 0 1.912.074 2.17.106v2.536h-1.503c-1.118 0-1.334.531-1.334 1.31v1.697h2.822l-.462 2.83h-2.36v6.984C18.344 21.125 22 16.991 22 12c0-5.523-4.477-10-10-10z"/></svg></Link>
+                <Link href="#" className="text-gray-600 hover:text-green-700"><svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.2 6.78a5.1 5.1 0 00-3.6-3.6C15.3 3 12 3 12 3s-3.3 0-4.6.18a5.1 5.1 0 00-3.6 3.6C3 8.1 3 12 3 12s0 3.9.18 5.22a5.1 5.1 0 003.6 3.6C8.7 21 12 21 12 21s3.3 0 4.6-.18a5.1 5.1 0 003.6-3.6C21 15.9 21 12 21 12s0-3.9-.18-5.22zM9.5 15.4V8.6l6.5 3.4-6.5 3.4z"/></svg></Link>
+                <Link href="#" className="text-gray-600 hover:text-green-700"><svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22.46 6c-.73.337-1.53.565-2.37.662.83-.5 1.46-1.28 1.76-2.22-.78.47-1.65.81-2.58 1-.74-.79-1.8-1.28-3.03-1.28-2.29 0-4.16 1.86-4.16 4.15 0 .32.03.63.1.93-3.46-.17-6.53-1.84-8.59-4.35-.36.62-.57 1.34-.57 2.13 0 1.44.73 2.7 1.84 3.45-.67-.02-1.3-.2-1.87-.51v.05c0 2.01 1.43 3.69 3.32 4.07-.35.1-.72.15-1.1.15-.27 0-.53-.03-.78-.07.53 1.65 2.06 2.85 3.88 2.89-1.42 1.11-3.21 1.78-5.16 1.78-.33 0-.66-.02-.98-.06 1.83 1.17 3.99 1.86 6.32 1.86 7.58 0 11.72-6.28 11.72-11.73 0-.17-.0-.33-.01-.5-.81-.59-1.83-.98-2.88-1.16z"/></svg></Link>
+              </div>
             </div>
-          </div>
-        </div>
-
-        {/* Bottom Bar */}
-        <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-          <p>&copy; 2025 My Green Lab. All rights reserved.</p>
-          <div className="flex space-x-4 mt-4 md:mt-0">
-            <Link href="/privacy" className="hover:text-white transition-colors duration-200">
-              Privacy Policy
-            </Link>
-            <Link href="/terms" className="hover:text-white transition-colors duration-200">
-              Terms of Service
-            </Link>
-            <Link href="/cookies" className="hover:text-white transition-colors duration-200">
-              Cookie Policy
-            </Link>
           </div>
         </div>
       </div>

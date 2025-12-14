@@ -1,7 +1,7 @@
 "use client";
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 // Importing icons from lucide-react as specified for React apps
-import { Menu, Heart, ArrowRight, Linkedin, Twitter, Instagram, Youtube } from 'lucide-react';
+import { ArrowRight, Linkedin, Twitter, Instagram, Youtube } from 'lucide-react';
 
 /**
  * Custom hook logic to handle IntersectionObserver for scroll animations.
@@ -49,8 +49,6 @@ const useScrollAnimation = (rootRef: React.RefObject<HTMLElement | null>) => {
 
 
 const App: React.FC = () => {
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
     // Refs for animation sections
     const whySectionRef = useRef<HTMLElement>(null);
     const coverSectionRef = useRef<HTMLElement>(null); // Added ref for Program Cover section
@@ -64,10 +62,6 @@ const App: React.FC = () => {
     useScrollAnimation(pricingSectionRef);
     useScrollAnimation(modulesSectionRef);
     useScrollAnimation(developerSectionRef);
-
-    const toggleMobileMenu = () => {
-        setIsMobileMenuOpen(!isMobileMenuOpen);
-    };
 
     // Inline CSS Styles for custom classes and animations (transferred from <style> block)
     const customStyles = `
@@ -178,55 +172,6 @@ const App: React.FC = () => {
         <>
             <style>{customStyles}</style>
             <div className="min-h-screen">
-                {/* Navigation Bar */}
-                <header className="sticky top-0 z-40 bg-white shadow-sm">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="flex justify-between items-center h-20">
-                            {/* Logo */}
-                            <div className="flex-shrink-0">
-                                <a href="index.html" className="flex items-center space-x-2 text-xl font-bold text-gray-800">
-                                    <div className="w-6 h-6 rounded-full color-green-primary"></div>
-                                    <span>my green lab.</span>
-                                </a>
-                            </div>
-                            {/* Desktop Links */}
-                            <nav className="hidden md:flex space-x-8 text-sm font-medium">
-                                <a href="#" className="nav-link text-gray-700 hover:text-green-primary">How to Green Your Lab</a>
-                                <a href="index.html" className="nav-link text-green-primary active">Programs</a>
-                                <a href="resources.html" className="nav-link text-gray-700 hover:text-green-primary">Resources</a>
-                                <a href="#" className="nav-link text-gray-700 hover:text-green-primary">The Beaker Blog</a>
-                                <a href="#" className="nav-link text-gray-700 hover:text-green-primary">About Us</a>
-                                <a href="#" className="nav-link text-gray-700 hover:text-green-primary">Get Involved</a>
-                            </nav>
-                            {/* CTA */}
-                            <div className="hidden md:block">
-                                <button className="flex items-center text-gray-700 text-sm font-medium hover:text-green-primary transition duration-300">
-                                    Give Now
-                                    <Heart className="w-4 h-4 ml-1" />
-                                </button>
-                            </div>
-                            {/* Mobile Menu Button */}
-                            <div className="md:hidden">
-                                <button onClick={toggleMobileMenu} className="text-gray-500 hover:text-green-primary focus:outline-none">
-                                    <Menu className="w-6 h-6" />
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    {/* Mobile Menu */}
-                    <div className={`md:hidden ${isMobileMenuOpen ? 'block' : 'hidden'} bg-white border-t border-gray-100 py-4`}>
-                        <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">How to Green Your Lab</a>
-                        <a href="index.html" className="block px-4 py-2 text-sm text-green-primary bg-gray-50">Programs</a>
-                        <a href="resources.html" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Resources</a>
-                        <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">The Beaker Blog</a>
-                        <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">About Us</a>
-                        <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Get Involved</a>
-                        <button className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center">
-                            Give Now
-                            <Heart className="w-4 h-4 ml-1" />
-                        </button>
-                    </div>
-                </header>
 
                 {/* Hero Section */}
                 <section className="relative pt-16 pb-24 overflow-hidden">
@@ -479,63 +424,6 @@ const App: React.FC = () => {
                     </div>
                 </section>
 
-                {/* Footer */}
-                <footer className="bg-gray-800 text-white pt-16 pb-8">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-gray-700 pb-10 mb-8">
-                            {/* Logo/Branding */}
-                            <div>
-                                <a href="index.html" className="flex items-center space-x-2 text-xl font-bold text-white mb-6">
-                                    <div className="w-6 h-6 rounded-full color-green-primary"></div>
-                                    <span>my green lab.</span>
-                                </a>
-                                <p className="text-sm text-gray-400">&copy; 2025 My Green Lab</p>
-                            </div>
-
-                            {/* Key Programs */}
-                            <div>
-                                <h4 className="text-lg font-semibold mb-4 text-green-primary">KEY PROGRAMS</h4>
-                                <ul className="space-y-2 text-sm text-gray-400">
-                                    <li><a href="index.html" className="hover:text-white transition">My Green Lab Certification</a></li>
-                                    <li><a href="act_ecolabel.html" className="hover:text-white transition">ACT® Ecolabel</a></li>
-                                    <li><a href="#" className="hover:text-white transition">ECoLab®</a></li>
-                                    <li><a href="accredited_professionals.html" className="hover:text-white transition">Accreditations</a></li>
-                                    <li><a href="resources.html" className="hover:text-white transition">Resources</a></li>
-                                </ul>
-                            </div>
-
-                            {/* About Us */}
-                            <div>
-                                <h4 className="text-lg font-semibold mb-4 text-green-primary">ABOUT US</h4>
-                                <ul className="space-y-2 text-sm text-gray-400">
-                                    <li><a href="#" className="hover:text-white transition">Contact Us</a></li>
-                                    <li><a href="newsletter.html" className="hover:text-white transition">Newsletter</a></li>
-                                    <li><a href="data_privacy.html" className="hover:text-white transition">Data Privacy</a></li>
-                                    <li><a href="#" className="hover:text-white transition">Terms and Conditions</a></li>
-                                    <li><a href="#" className="hover:text-white transition">Cookie Preferences</a></li>
-                                </ul>
-                            </div>
-
-                            {/* Join Our Mailing List */}
-                            <div>
-                                <h4 className="text-lg font-semibold mb-4 text-green-primary">JOIN OUR MAILING LIST</h4>
-                                <p className="text-sm text-gray-400 mb-4">Stay in touch and receive occasional news and updates on programs and initiatives, partner success stories, certification tips, and more!</p>
-                                <button className="w-full py-2 color-green-primary text-white font-semibold rounded-lg hover:bg-green-600 transition duration-300">SIGN UP</button>
-
-                                <h4 className="text-lg font-semibold mt-8 mb-4 text-green-primary">FOLLOW US</h4>
-                                <div className="flex space-x-4">
-                                    <a href="#" className="text-gray-400 hover:text-white transition"><Linkedin className="w-6 h-6" /></a>
-                                    <a href="#" className="text-gray-400 hover:text-white transition"><Twitter className="w-6 h-6" /></a>
-                                    <a href="#" className="text-gray-400 hover:text-white transition"><Instagram className="w-6 h-6" /></a>
-                                    <a href="#" className="text-gray-400 hover:text-white transition"><Youtube className="w-6 h-6" /></a>
-                                </div>
-                            </div>
-                        </div>
-                        <p className="text-center text-sm text-gray-500 mt-8">
-                            &copy; 2025 My Green Lab. All rights reserved.
-                        </p>
-                    </div>
-                </footer>
             </div>
         </>
     );

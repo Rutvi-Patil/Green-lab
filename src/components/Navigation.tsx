@@ -1,158 +1,85 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import { FlaskConical } from 'lucide-react';
 
-const Navigation = () => {
+interface NavListItem {
+  name: string;
+  href: string;
+}
+
+const Navigation: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const navLinks: NavListItem[] = [
+    { name: 'How to Green Your Lab', href: '/certification' },
+    { name: 'Programs', href: '#' },
+    { name: 'Resources', href: '/resources' },
+    { name: 'About Us', href: '/about' },
+    { name: 'Get Involved', href: '/contact' },
+  ];
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false);
-  };
-
-  const navLinks = [
-    { href: "/how-to-green-your-lab", label: "How to Green Your Lab" },
-    { href: "/programs", label: "Programs" },
-    { href: "/resources", label: "Resources" },
-    { href: "/beaker-blog", label: "The Beaker Blog" },
-    { href: "/about", label: "About Us" },
-    { href: "/get-involved", label: "Get Involved" },
-  ];
-
   return (
-    <header className={`sticky top-0 z-50 bg-white transition-all duration-300 ${isScrolled ? 'shadow-md' : 'shadow-sm'}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
-          {/* Logo */}
-          <div className="flex-shrink-0">
-            <Link href="/" className="flex items-center space-x-2 text-xl font-bold logo-text">
-              <div className="w-6 h-6 rounded-full bg-mgl-lime"></div>
-              <span>my green lab.</span>
+    <header className="sticky top-0 z-50 bg-white shadow-md">
+      <div className="container mx-auto flex items-center justify-between p-4 max-w-7xl">
+        {/* Logo */}
+        <Link href="/" className="flex items-center space-x-2 text-2xl font-bold text-green-700 hover:text-green-800 transition">
+          <FlaskConical className="w-8 h-8" />
+          <span>my green lab.</span>
+        </Link>
+        
+        {/* Navigation and Actions - Desktop */}
+        <nav className="hidden lg:flex items-center space-x-6">
+          {navLinks.map((link) => (
+            <Link key={link.name} href={link.href} className="text-gray-600 hover:text-green-700 transition duration-150">
+              {link.name}
             </Link>
-          </div>
+          ))}
+          <Link href="/contact" className="text-sm font-semibold text-green-700 border border-green-700 py-2 px-4 rounded-full hover:bg-green-50 transition duration-150">
+            GIVE NOW
+          </Link>
+        </nav>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8 text-sm font-medium">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-gray-700 hover:text-mgl-dark transition-colors duration-200 relative group"
-              >
-                {link.label}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-mgl-lime transition-all duration-300 group-hover:w-full"></span>
-              </Link>
-            ))}
-          </nav>
-
-          {/* CTA Button */}
-          <div className="hidden md:block">
-            <Link
-              href="/donate"
-              className="flex items-center text-gray-700 text-sm font-medium hover:text-mgl-dark transition-colors duration-300 group"
-            >
-              Give Now
-              <svg
-                className="w-4 h-4 ml-1 transition-transform duration-200 group-hover:scale-110"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </Link>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
-            <button
-              onClick={toggleMobileMenu}
-              className="text-gray-500 hover:text-mgl-dark focus:outline-none focus:text-mgl-dark transition-colors duration-200"
-              aria-label="Toggle mobile menu"
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                {isMobileMenuOpen ? (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                ) : (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                )}
-              </svg>
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Menu */}
-        <div
-          className={`md:hidden bg-white border-t border-gray-100 overflow-hidden transition-all duration-300 ${
-            isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-          }`}
+        {/* Mobile Menu Icon */}
+        <button 
+          className="lg:hidden text-gray-600 hover:text-green-700"
+          onClick={toggleMobileMenu}
         >
-          <div className="py-4 space-y-1">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="lg:hidden bg-white border-t border-gray-100">
+          <div className="container mx-auto max-w-7xl px-4 py-4">
             {navLinks.map((link) => (
               <Link
-                key={link.href}
+                key={link.name}
                 href={link.href}
-                onClick={closeMobileMenu}
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-mgl-seafoam hover:text-mgl-dark transition-colors duration-200"
+                className="block py-2 text-gray-600 hover:text-green-700 transition duration-150"
+                onClick={() => setIsMobileMenuOpen(false)}
               >
-                {link.label}
+                {link.name}
               </Link>
             ))}
             <Link
-              href="/donate"
-              onClick={closeMobileMenu}
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-mgl-seafoam hover:text-mgl-dark transition-colors duration-200 flex items-center"
+              href="/contact"
+              className="block py-2 text-sm font-semibold text-green-700 border border-green-700 rounded-full hover:bg-green-50 transition duration-150 text-center mt-2"
+              onClick={() => setIsMobileMenuOpen(false)}
             >
-              Give Now
-              <svg
-                className="w-4 h-4 ml-1"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
-                  clipRule="evenodd"
-                />
-              </svg>
+              GIVE NOW
             </Link>
           </div>
         </div>
-      </div>
+      )}
     </header>
   );
 };
