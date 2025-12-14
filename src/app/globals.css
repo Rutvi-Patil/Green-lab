@@ -1,8 +1,32 @@
 @import "tailwindcss";
 
+/* My Green Lab Custom Colors */
 :root {
+  /* Original Next.js colors */
   --background: #ffffff;
   --foreground: #171717;
+  
+  /* My Green Lab Color Palette */
+  --mgl-lime: #9FE574;
+  --mgl-dark: #1C3D36;
+  --mgl-seafoam: #E0F2F1;
+  --mgl-light-bg: #F8F8F8;
+  --mgl-stats-green: #A3D900;
+  --mgl-program-purple: #43214f;
+  --mgl-program-magenta: #cf6ed0;
+  --mgl-program-blue: #8fb4ff;
+  --mgl-program-light-green: #82d461;
+  --mgl-join-teal: #9bd6de;
+  
+  /* Additional colors from other pages */
+  --color-primary-green: #0A5F23;
+  --color-accent-green: #38A169;
+  --color-light-gray: #f9fafb;
+  --color-green-primary: #4CAF50;
+  --color-green-light: #99D98C;
+  --color-blue-light: #B2EBF2;
+  --color-green-dark-banner: #00897B;
+  --color-purple-dark-banner: #4A148C;
 }
 
 @theme inline {
@@ -10,6 +34,18 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  
+  /* My Green Lab theme colors */
+  --color-mgl-lime: var(--mgl-lime);
+  --color-mgl-dark: var(--mgl-dark);
+  --color-mgl-seafoam: var(--mgl-seafoam);
+  --color-mgl-light-bg: var(--mgl-light-bg);
+  --color-mgl-stats-green: var(--mgl-stats-green);
+  --color-mgl-program-purple: var(--mgl-program-purple);
+  --color-mgl-program-magenta: var(--mgl-program-magenta);
+  --color-mgl-program-blue: var(--mgl-program-blue);
+  --color-mgl-program-light-green: var(--mgl-program-light-green);
+  --color-mgl-join-teal: var(--mgl-join-teal);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,5 +58,214 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Custom utility classes */
+html { 
+  scroll-behavior: smooth; 
+}
+
+.logo-text { 
+  color: var(--mgl-dark); 
+}
+
+.mgl-serif {
+  font-family: ui-serif, Georgia, "Times New Roman", serif;
+}
+
+.bg-mgl-cream { 
+  background-color: #f4ecdf; 
+}
+
+.bg-mgl-join { 
+  background-color: var(--mgl-join-teal); 
+}
+
+/* Mobile menu animations */
+#mobile-menu {
+  transform: translateY(-10px);
+  opacity: 0;
+  transition: all 0.3s ease-out;
+}
+
+#mobile-menu.open {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Animation utilities */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+.reveal-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-fade {
+  opacity: 0;
+  transition: opacity 0.7s ease-out;
+}
+
+.reveal-fade.visible { 
+  opacity: 1; 
+}
+
+.card-elevated {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.card-elevated:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.16);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.float-slow { 
+  animation: float 8s ease-in-out infinite; 
+}
+
+@keyframes cta-bounce {
+  0% { transform: translateY(0); }
+  40% { transform: translateY(-2px); }
+  60% { transform: translateY(1px); }
+  100% { transform: translateY(0); }
+}
+
+.cta-bounce:hover { 
+  animation: cta-bounce 0.35s ease-out; 
+}
+
+/* PROGRAMS SCROLLER */
+.programs-scroll::-webkit-scrollbar { display: none; }
+.programs-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: 1rem;
+}
+
+.program-card {
+  height: 25rem;
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.75rem;
+  flex-shrink: 0;
+  width: 19rem;
+  scroll-snap-align: start;
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+  box-shadow: 0 14px 30px rgba(0,0,0,0.08);
+}
+.program-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.14);
+}
+.program-text-container {
+  position: absolute;
+  inset: 0;
+  padding: 2.25rem 2rem 7.5rem 2rem;
+  z-index: 10;
+}
+.program-image-cutout {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 42%;
+  border-bottom-left-radius: 1.75rem;
+  border-bottom-right-radius: 1.75rem;
+  overflow: hidden;
+}
+.program-arrow-button {
+  position: absolute;
+  bottom: 1.75rem;
+  left: 2rem;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.12);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+}
+.program-card:hover .program-arrow-button {
+  transform: translateX(4px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+}
+
+/* JOIN THE MOVEMENT MICRO ANIMATIONS */
+@keyframes joinFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes joinDriftRight {
+  0% { transform: translate(0,0); }
+  50% { transform: translate(14px,-10px); }
+  100% { transform: translate(0,0); }
+}
+@keyframes joinDriftDown {
+  0% { transform: translate(0,0); }
+  50% { transform: translate(-10px,12px); }
+  100% { transform: translate(0,0); }
+}
+.join-main-img { animation: joinFloat 9s ease-in-out infinite; }
+.join-circle-lg { animation: joinDriftRight 18s ease-in-out infinite; }
+.join-circle-sm { animation: joinDriftDown 16s ease-in-out infinite; }
+
+/* HERO AOS-LIKE ANIMATIONS (fadeLeft / fadeRight / fadeUp) */
+:root {
+  --aos-fade-duration: 1s;
+  --aos-fade-offset: 40px;
+}
+
+.aos-fade {
+  opacity: 0;
+  position: relative;
+}
+
+.aos-fade--left {
+  right: calc(var(--aos-fade-offset) * -1);
+}
+.aos-fade--right {
+  left: calc(var(--aos-fade-offset) * -1);
+}
+.aos-fade--up {
+  top: var(--aos-fade-offset);
+}
+
+@keyframes fadeLeft {
+  0%   { opacity: 0; right: calc(var(--aos-fade-offset) * -1); }
+  75%  { right: 0; }
+  100% { opacity: 1; right: 0; }
+}
+@keyframes fadeRight {
+  0%   { opacity: 0; left: calc(var(--aos-fade-offset) * -1); }
+  75%  { left: 0; }
+  100% { opacity: 1; left: 0; }
+}
+@keyframes fadeUp {
+  0%   { opacity: 0; top: var(--aos-fade-offset); }
+  75%  { top: 0; }
+  100% { opacity: 1; top: 0; }
+}
+
+.aos-fade--left.in-view {
+  animation: fadeLeft var(--aos-fade-duration) forwards;
+}
+.aos-fade--right.in-view {
+  animation: fadeRight var(--aos-fade-duration) forwards;
+}
+.aos-fade--up.in-view {
+  animation: fadeUp var(--aos-fade-duration) forwards;
 }
