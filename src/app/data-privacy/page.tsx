@@ -1,4 +1,62 @@
-'use client';
+import { Metadata } from 'next';
+import { createPageMetadata, createBreadcrumbSchema, createFAQSchema } from '@/utils/metadata';
+
+// Page-specific metadata
+const pageMetadata = createPageMetadata({
+  title: 'Data Privacy Policy | My Green Lab - Privacy & Data Protection',
+  description: 'Read My Green Lab\'s comprehensive data privacy policy. Learn how we collect, use, and protect your personal information when you use our green lab certification and sustainability services.',
+  keywords: 'My Green Lab data privacy, privacy policy, data protection, GDPR compliance, personal information, laboratory certification privacy, green lab data security',
+  canonical: 'https://mygreenlab.org/data-privacy',
+  openGraph: {
+    type: 'website',
+    url: 'https://mygreenlab.org/data-privacy',
+    image: 'https://mygreenlab.org/wp-content/uploads/2025/07/mygreenlab-logo.png',
+  },
+  twitter: {
+    image: 'https://mygreenlab.org/wp-content/uploads/2025/07/mygreenlab-logo.png',
+  },
+  jsonLd: [
+    createBreadcrumbSchema([
+      { name: 'Home', url: 'https://mygreenlab.org/' },
+      { name: 'Data Privacy Policy', url: 'https://mygreenlab.org/data-privacy' }
+    ]),
+    createFAQSchema([
+      {
+        question: 'What personal information does My Green Lab collect?',
+        answer: 'We collect personal information you voluntarily provide such as name, contact details, professional information, account credentials, and payment information. We also automatically collect technical information like IP address and browsing behavior.'
+      },
+      {
+        question: 'How does My Green Lab protect my data?',
+        answer: 'We implement SSL encryption, regular security assessments, access controls, and employee training on data protection. However, no internet transmission method is 100% secure.'
+      },
+      {
+        question: 'Can I access or delete my personal data?',
+        answer: 'Yes, you have rights to access, correct, delete, or transfer your personal information. Contact us at privacy@mygreenlab.org to exercise these privacy rights.'
+      },
+      {
+        question: 'Does My Green Lab share data with third parties?',
+        answer: 'We do not sell your data. We only share information with service providers, for legal compliance, business transfers, or program partners with your consent as described in our privacy policy.'
+      }
+    ])
+  ]
+});
+
+// Generate metadata for server-side rendering
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: pageMetadata.title,
+    description: pageMetadata.description,
+    keywords: pageMetadata.keywords,
+    openGraph: pageMetadata.openGraph,
+    twitter: pageMetadata.twitter,
+    alternates: {
+      canonical: pageMetadata.canonical,
+    },
+    other: {
+      'application/ld+json': JSON.stringify(pageMetadata.jsonLd),
+    },
+  };
+}
 
 export default function DataPrivacyPage() {
   return (
@@ -8,7 +66,7 @@ export default function DataPrivacyPage() {
       <section className="relative pt-16 pb-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-6">
               Data Privacy Policy
             </h1>
             <p className="text-base text-gray-600 mb-8 max-w-3xl mx-auto">

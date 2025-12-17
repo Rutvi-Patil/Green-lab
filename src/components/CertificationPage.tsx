@@ -1,33 +1,10 @@
-import React from 'react';
+'use client';
+
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   FlaskConical, Check, Zap, Factory, Plug, Laptop, Globe, Droplet,
   Beaker, ShoppingCart, Plane, Trash2, Map, Users, Lightbulb, TrendingUp, ArrowRight, X
 } from 'lucide-react';
-import SEOHead from '@/components/SEOHead';
-import { createPageMetadata, createBreadcrumbSchema } from '@/utils/metadata';
-import { Metadata } from 'next';
-
-// Page-specific metadata
-const pageMetadata = createPageMetadata({
-  title: 'My Green Lab Certification - Green Lab Certification Program',
-  description: 'Transform your laboratory with My Green Lab Certification. Join 4,500+ certified labs worldwide in reducing environmental impact through evidence-based sustainability practices.',
-  keywords: 'green lab certification, laboratory sustainability, environmental certification, lab energy efficiency, waste reduction, sustainable science, green chemistry',
-  canonical: 'https://mygreenlab.org/certification',
-  openGraph: {
-    type: 'website',
-    url: 'https://mygreenlab.org/certification',
-    image: 'https://mygreenlab.org/wp-content/uploads/2025/07/AdobeStock_scientist-looking-at-lab-equipment-scaled-650x441.jpeg',
-  },
-  twitter: {
-    image: 'https://mygreenlab.org/wp-content/uploads/2025/07/AdobeStock_scientist-looking-at-lab-equipment-scaled-650x441.jpeg',
-  },
-  jsonLd: [
-    createBreadcrumbSchema([
-      { name: 'Home', url: 'https://mygreenlab.org/' },
-      { name: 'Certification', url: 'https://mygreenlab.org/certification' }
-    ])
-  ]
-});
 
 // --- 1. TYPE DEFINITIONS ---
 interface NavListItem {
@@ -72,7 +49,7 @@ const resultsData: ResultBox[] = [
 
 const uspData: USPItem[] = [
   { title: 'Trusted', description: 'by over 4,000 certified labs and 50,000 scientists across 50+ countries.' },
-  { title: 'Endorsed', description: 'by UN-backed Race to Zero and U.S. EPA for its rigorous, science-driven approach.' },
+  { title: 'Endorsed', description: 'by UN-backed Race to Zero and the U.S. EPA for its rigorous, science-driven approach.' },
   { title: 'Verified', description: 'by independent third-party verification by Impact Laboratories to ensure integrity and accountability.' },
 ];
 
@@ -234,7 +211,7 @@ const Hero: React.FC = () => {
               My Green Lab<sup className="text-sm sm:text-base lg:text-xl">&reg;</sup> Certification
             </h1>
             <p className="text-lg text-gray-600 mb-8 max-w-lg">
-              Join 4,000+ certified labs committed to sustainable science. Cut costs, improve efficiency, and embed green practices with globally recognized lab certification.
+              Join 4,000+ certified labs committed to sustainable science. Cut costs, improve efficiency, and embed green practices with the globally recognized lab certification.
             </p>
             <a
               href="#"
@@ -685,25 +662,8 @@ const Sponsors: React.FC = () => {
   );
 };
 
-// Generate metadata for server-side rendering
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: pageMetadata.title,
-    description: pageMetadata.description,
-    keywords: pageMetadata.keywords,
-    openGraph: pageMetadata.openGraph,
-    twitter: pageMetadata.twitter,
-    alternates: {
-      canonical: pageMetadata.canonical,
-    },
-    other: {
-      'application/ld+json': JSON.stringify(pageMetadata.jsonLd),
-    },
-  };
-}
-
 // --- 4. MAIN APP COMPONENT ---
-const CertificationPage = () => {
+const CertificationPage: React.FC = () => {
   const videoBackgroundUrl = "https://i.vimeocdn.com/video/1978313839-2defa24a90a34b077990ae152b49f7f536c8db4ac64a9887d05e30a4ab7982ea-d?mw=1300&mh=732&q=70";
 
   return (
@@ -711,7 +671,7 @@ const CertificationPage = () => {
       <Hero />
       <ResultsSection />
       <PathToCertificationCTA />
-      {/* Mocked Video Section - Omitted to focus on static UI elements */}
+      {/* Mocked Video Section - Omitted to focus on the static UI elements */}
       {/* The video section would require embedding and custom styling, but surrounding content is more critical for page structure. */}
       <section className="py-20 text-center bg-gray-50">
         <h2 className="text-3xl font-bold text-gray-800 mb-4">Setting the standard</h2>

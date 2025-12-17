@@ -1,147 +1,320 @@
-'use client';
+import React from 'react';
+import { Calendar, MapPin, Clock, Users, ArrowRight } from 'lucide-react';
+import { createPageMetadata, createBreadcrumbSchema, createEventSchema } from '@/utils/metadata';
+import { Metadata } from 'next';
 
-export default function EventsPage() {
-  return (
-    <div className="bg-white">
+// Page-specific metadata
+const pageMetadata = createPageMetadata({
+  title: 'My Green Lab Events - Conferences, Workshops & Webinars',
+  description: 'Join My Green Lab events including conferences, workshops, and webinars on laboratory sustainability. Connect with sustainability professionals and learn best practices.',
+  keywords: 'My Green Lab events, laboratory sustainability conference, green lab workshop, sustainability webinar, environmental events',
+  canonical: 'https://mygreenlab.org/events',
+  openGraph: {
+    type: 'website',
+    url: 'https://mygreenlab.org/events',
+    image: 'https://mygreenlab.org/wp-content/uploads/2025/07/mygreenlab-logo.png',
+  },
+  twitter: {
+    image: 'https://mygreenlab.org/wp-content/uploads/2025/07/mygreenlab-logo.png',
+  },
+  jsonLd: [
+    createBreadcrumbSchema([
+      { name: 'Home', url: 'https://mygreenlab.org/' },
+      { name: 'Events', url: 'https://mygreenlab.org/events' }
+    ]),
+    createEventSchema({
+      name: 'My Green Lab Annual Conference 2024',
+      description: 'Join sustainability professionals from around the world for the premier laboratory sustainability conference.',
+      startDate: '2024-10-15T09:00:00-07:00',
+      endDate: '2024-10-17T17:00:00-07:00',
+      location: 'San Diego, CA',
+      url: 'https://mygreenlab.org/events'
+    })
+  ]
+});
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Back Link and Hero Section */}
-        <div className="py-12 flex flex-col lg:flex-row items-center justify-between gap-12">
-          <div className="lg:w-1/2">
-            <a href="#" className="text-sm font-medium text-gray-500 hover:text-green-500 transition duration-150 mb-8 inline-flex items-center">
-              <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-              GET INVOLVED
-            </a>
-            <h1 className="text-6xl font-extrabold leading-tight text-gray-900 mb-6">
-              Events
-            </h1>
-            {/* Empty space for text, as the video shows minimal text here */}
-          </div>
-          <div className="lg:w-1/2 flex justify-center lg:justify-end">
-            {/* Hero Image with Circular Crop */}
-            <div className="w-72 h-72 sm:w-96 sm:h-96 rounded-full overflow-hidden shadow-2xl transform hover:scale-[1.02] transition duration-500 ease-in-out">
-              <img 
-                src="https://mygreenlab.org/wp-content/uploads/2025/08/VIrtual-Summit-2-920x920.png" 
-                alt="Scientist looking into a microscope in a laboratory setting." 
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Recording CTA Block (Green) */}
-        <div className="bg-green-800 text-white p-8 sm:p-12 lg:p-16 rounded-xl my-16 shadow-lg transform hover:shadow-2xl transition duration-300">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
-            <div className="max-w-3xl">
-              <p className="text-sm font-semibold tracking-widest uppercase text-white opacity-80 mb-2">2026 CARBON IMPACT REPORT</p>
-              <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-                Register to view the Recording
-              </h2>
-              <p className="text-lg opacity-90">
-                Get access to the recording for the Leading Through Change: Pharma's Climate Commitment Amid ESG Headwinds event.
-              </p>
-            </div>
-            <a href="#" className="mt-8 sm:mt-0 flex items-center justify-center bg-white text-green-800 font-bold py-3 px-6 rounded-full shadow-md hover:bg-gray-100 transition duration-200 group transform hover:scale-105">
-              Register Now
-              <svg className="w-5 h-5 ml-2 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
-          </div>
-        </div>
-
-        {/* Past Events Section */}
-        <div className="py-12">
-          <h2 className="text-4xl font-extrabold text-gray-900 mb-10">Past My Green Lab events</h2>
-          <p className="text-lg text-gray-600 mb-12 max-w-4xl">
-            Explore highlights from our previous summits and special events. Many include on-demand recordings, resources, and follow-up links.
-          </p>
-
-          <div className="space-y-12">
-            {/* Event Item 1 */}
-            <div className="flex flex-col md:flex-row justify-between items-start border-b border-gray-200 pb-8 transition duration-300 hover:bg-gray-50 -mx-4 px-4 rounded-lg">
-              <div className="md:w-1/3 space-y-2 py-2">
-                <p className="text-sm font-semibold tracking-wider uppercase text-gray-500">GLOBAL SUMMIT 2025</p>
-                <h3 className="text-2xl font-bold text-green-800">Rising to the Challenge</h3>
-              </div>
-              <div className="md:w-2/3 md:pl-12 py-2">
-                <p className="text-gray-700 mb-3">
-                  Join the global scientific community at our flagship event focused on sustainability, innovation, and impact in science.
-                </p>
-                <a href="#" className="text-green-600 font-semibold hover:underline flex items-center">
-                  Global Summit 2025
-                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </a>
-              </div>
-            </div>
-
-            {/* Event Item 2 */}
-            <div className="flex flex-col md:flex-row justify-between items-start border-b border-gray-200 pb-8 transition duration-300 hover:bg-gray-50 -mx-4 px-4 rounded-lg">
-              <div className="md:w-1/3 space-y-2 py-2">
-                <p className="text-sm font-semibold tracking-wider uppercase text-gray-500">EUROPE SUMMIT 2025</p>
-                <h3 className="text-2xl font-bold text-green-800">Scalable solutions for wider impact</h3>
-              </div>
-              <div className="md:w-2/3 md:pl-12 py-2">
-                <p className="text-gray-700 mb-3">
-                  This event featured European case studies and speakers from across the sector, including academic researchers, industry professionals, and sustainability experts.
-                </p>
-                <a href="#" className="text-green-600 font-semibold hover:underline flex items-center">
-                  2025 Europe Summit
-                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </a>
-              </div>
-            </div>
-            
-            {/* Event Item 3 (Repeating pattern for more content) */}
-            <div className="flex flex-col md:flex-row justify-between items-start border-b border-gray-200 pb-8 transition duration-300 hover:bg-gray-50 -mx-4 px-4 rounded-lg">
-              <div className="md:w-1/3 space-y-2 py-2">
-                <p className="text-sm font-semibold tracking-wider uppercase text-gray-500">GLOBAL SUMMIT 2024</p>
-                <h3 className="text-2xl font-bold text-green-800">Raising the bar</h3>
-              </div>
-              <div className="md:w-2/3 md:pl-12 py-2">
-                <p className="text-gray-700 mb-3">
-                  This event addressed the urgency and opportunity facing science today, highlighting transparency, third-party verification, and strategies for navigating evolving regulations.
-                </p>
-                <a href="#" className="text-green-600 font-semibold hover:underline flex items-center">
-                  Global Summit 2024
-                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </a>
-              </div>
-            </div>
-            
-          </div>
-        </div>
-        
-        {/* Recordings CTA Block (Purple) */}
-        <div className="bg-purple-800 text-white p-8 sm:p-12 lg:p-16 rounded-xl my-24 shadow-lg transform hover:shadow-2xl transition duration-300">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
-            <div className="max-w-3xl">
-              <p className="text-sm font-semibold tracking-widest uppercase text-white opacity-80 mb-2">GLOBAL SUMMIT 2025</p>
-              <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-                Register to view the recordings
-              </h2>
-              <p className="text-lg opacity-90">
-                Don't miss this year's Summit recordings, featuring expert speakers, breakout sessions, and global collaboration on the future of green labs.
-              </p>
-            </div>
-            <a href="#" className="mt-8 sm:mt-0 flex items-center justify-center bg-white text-purple-800 font-bold py-3 px-6 rounded-full shadow-md hover:bg-gray-100 transition duration-200 group transform hover:scale-105">
-              Recordings available!
-              <svg className="w-5 h-5 ml-2 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
-          </div>
-        </div>
-
-      </main>
-    </div>
-  );
+// Generate metadata for server-side rendering
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: pageMetadata.title,
+    description: pageMetadata.description,
+    keywords: pageMetadata.keywords,
+    openGraph: pageMetadata.openGraph,
+    twitter: pageMetadata.twitter,
+    alternates: {
+      canonical: pageMetadata.canonical,
+    },
+    other: {
+      'application/ld+json': JSON.stringify(pageMetadata.jsonLd),
+    },
+  };
 }
+
+const EventsPage = () => {
+  const upcomingEvents = [
+    {
+      id: 1,
+      title: 'My Green Lab Annual Conference 2024',
+      date: 'October 15-17, 2024',
+      time: '9:00 AM - 5:00 PM PST',
+      location: 'San Diego, CA',
+      type: 'Conference',
+      description: 'Join sustainability professionals from around the world for three days of networking, learning, and collaboration on laboratory sustainability.',
+      image: 'https://images.unsplash.com/photo-1540575161948-903b5a534c77?auto=compress&cs=tinysrgb&w=800',
+      price: '$499'
+    },
+    {
+      id: 2,
+      title: 'Green Lab Certification Workshop',
+      date: 'November 8, 2024',
+      time: '10:00 AM - 2:00 PM PST',
+      location: 'Virtual',
+      type: 'Workshop',
+      description: 'Learn the step-by-step process for achieving My Green Lab Certification in this interactive virtual workshop.',
+      image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=compress&cs=tinysrgb&w=800',
+      price: '$149'
+    },
+    {
+      id: 3,
+      title: 'ACT Ecolabel Product Showcase',
+      date: 'December 5, 2024',
+      time: '11:00 AM - 12:30 PM PST',
+      location: 'Virtual',
+      type: 'Webinar',
+      description: 'Discover the latest ACT Ecolabel certified products and learn how to incorporate them into your sustainable procurement strategy.',
+      image: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=compress&cs=tinysrgb&w=800',
+      price: 'Free'
+    }
+  ];
+
+  const pastEvents = [
+    {
+      id: 4,
+      title: 'Sustainable Lab Design Summit',
+      date: 'September 12, 2024',
+      location: 'Boston, MA',
+      type: 'Summit',
+      description: 'Exploring innovative approaches to sustainable laboratory design and construction.',
+      attendees: 250
+    },
+    {
+      id: 5,
+      title: 'Energy Efficiency in Labs Webinar',
+      date: 'August 22, 2024',
+      location: 'Virtual',
+      type: 'Webinar',
+      description: 'Best practices for reducing energy consumption in laboratory operations.',
+      attendees: 500
+    }
+  ];
+
+  return (
+    <div className="min-h-screen font-sans text-gray-900 bg-white">
+        {/* Hero Section */}
+        <section className="py-12 sm:py-16 lg:py-20 bg-mgl-light-bg">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-4xl mx-auto">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
+                My Green Lab Events
+              </h1>
+              <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
+                Connect with sustainability professionals, learn best practices, and advance your laboratory sustainability journey through our events.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Upcoming Events */}
+        <section className="py-12 sm:py-16 lg:py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 sm:mb-12 gap-4">
+              <div>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+                  Upcoming Events
+                </h2>
+                <p className="text-base sm:text-lg text-gray-600">
+                  Join us for conferences, workshops, and webinars on laboratory sustainability.
+                </p>
+              </div>
+              <button className="flex items-center text-sm sm:text-base font-semibold text-mgl-lime hover:underline">
+                View All Events
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
+              </button>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+              {upcomingEvents.map((event) => (
+                <div key={event.id} className="bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                  <div className="relative h-48 sm:h-56">
+                    <img
+                      src={event.image}
+                      alt={event.title}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute top-4 left-4 bg-mgl-lime text-white px-3 py-1 rounded-full text-xs sm:text-sm font-semibold">
+                      {event.type}
+                    </div>
+                  </div>
+                  <div className="p-6 sm:p-8">
+                    <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">{event.title}</h3>
+                    <p className="text-sm sm:text-base text-gray-600 mb-4">{event.description}</p>
+                    
+                    <div className="space-y-2 mb-4">
+                      <div className="flex items-center text-sm text-gray-500">
+                        <Calendar className="w-4 h-4 mr-2 text-mgl-lime" />
+                        {event.date}
+                      </div>
+                      <div className="flex items-center text-sm text-gray-500">
+                        <Clock className="w-4 h-4 mr-2 text-mgl-lime" />
+                        {event.time}
+                      </div>
+                      <div className="flex items-center text-sm text-gray-500">
+                        <MapPin className="w-4 h-4 mr-2 text-mgl-lime" />
+                        {event.location}
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center justify-between">
+                      <span className="text-lg font-bold text-mgl-lime">{event.price}</span>
+                      <button className="px-4 py-2 bg-mgl-lime text-white text-sm font-semibold rounded-lg hover:bg-opacity-90 transition-colors duration-300">
+                        Register
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Event Types */}
+        <section className="py-12 sm:py-16 lg:py-20 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12 sm:mb-16">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                Types of Events
+              </h2>
+              <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">
+                We offer various event formats to meet different learning and networking needs.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+              <div className="text-center p-6 sm:p-8 bg-white rounded-2xl shadow-md">
+                <div className="w-16 h-16 bg-mgl-lime rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Users className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">Conferences</h3>
+                <p className="text-sm sm:text-base text-gray-600">
+                  Large-scale events featuring keynote speakers, workshops, and networking opportunities with sustainability professionals worldwide.
+                </p>
+              </div>
+
+              <div className="text-center p-6 sm:p-8 bg-white rounded-2xl shadow-md">
+                <div className="w-16 h-16 bg-mgl-lime rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Calendar className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">Workshops</h3>
+                <p className="text-sm sm:text-base text-gray-600">
+                  Hands-on training sessions focused on specific sustainability topics and certification processes.
+                </p>
+              </div>
+
+              <div className="text-center p-6 sm:p-8 bg-white rounded-2xl shadow-md">
+                <div className="w-16 h-16 bg-mgl-lime rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Clock className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">Webinars</h3>
+                <p className="text-sm sm:text-base text-gray-600">
+                  Online presentations and discussions on current trends and best practices in laboratory sustainability.
+                </p>
+              </div>
+
+              <div className="text-center p-6 sm:p-8 bg-white rounded-2xl shadow-md">
+                <div className="w-16 h-16 bg-mgl-lime rounded-full flex items-center justify-center mx-auto mb-4">
+                  <MapPin className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">Local Meetups</h3>
+                <p className="text-sm sm:text-base text-gray-600">
+                  Regional gatherings for local sustainability communities to share experiences and collaborate.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Past Events */}
+        <section className="py-12 sm:py-16 lg:py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12 sm:mb-16">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                Past Events
+              </h2>
+              <p className="text-base sm:text-lg text-gray-600">
+                See what you missed at our recent events and access recordings and materials.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+              {pastEvents.map((event) => (
+                <div key={event.id} className="bg-gray-50 p-6 sm:p-8 rounded-2xl">
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">{event.title}</h3>
+                      <div className="flex items-center text-sm text-gray-500 mb-2">
+                        <Calendar className="w-4 h-4 mr-2 text-mgl-lime" />
+                        {event.date}
+                      </div>
+                      <div className="flex items-center text-sm text-gray-500 mb-2">
+                        <MapPin className="w-4 h-4 mr-2 text-mgl-lime" />
+                        {event.location}
+                      </div>
+                    </div>
+                    <span className="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-xs font-semibold">
+                      {event.type}
+                    </span>
+                  </div>
+                  <p className="text-sm sm:text-base text-gray-600 mb-4">{event.description}</p>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center text-sm text-gray-500">
+                      <Users className="w-4 h-4 mr-2 text-mgl-lime" />
+                      {event.attendees} attendees
+                    </div>
+                    <button className="text-mgl-lime font-semibold text-sm hover:underline">
+                      View Recording
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Newsletter Signup */}
+        <section className="py-12 sm:py-16 lg:py-20 bg-mgl-lime">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
+              Stay Updated on Events
+            </h2>
+            <p className="text-base sm:text-lg text-white opacity-90 mb-8">
+              Subscribe to our newsletter to receive announcements about upcoming events, early bird discounts, and sustainability insights.
+            </p>
+            <div className="max-w-md mx-auto">
+              <div className="flex flex-col sm:flex-row gap-3">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="flex-1 px-4 py-3 rounded-lg focus:ring-2 focus:ring-white focus:outline-none"
+                />
+                <button className="px-6 py-3 bg-white text-mgl-lime font-semibold rounded-lg hover:bg-gray-100 transition-colors duration-300">
+                  Subscribe
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+  );
+};
+
+export default EventsPage;

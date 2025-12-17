@@ -1,4 +1,46 @@
-'use client';
+import { Metadata } from 'next';
+import { createPageMetadata, createBreadcrumbSchema, organizationSchema } from '@/utils/metadata';
+
+// Page-specific metadata
+const pageMetadata = createPageMetadata({
+  title: 'Follow My Green Lab - Connect on Social Media | LinkedIn, X, Facebook',
+  description: 'Follow My Green Lab on LinkedIn, X (Twitter), and Facebook for the latest updates on laboratory sustainability, green lab programs, and sustainable science community news.',
+  keywords: 'follow My Green Lab, My Green Lab social media, laboratory sustainability LinkedIn, green lab Twitter, sustainable science Facebook, My Green Lab community',
+  canonical: 'https://mygreenlab.org/follow',
+  openGraph: {
+    type: 'website',
+    url: 'https://mygreenlab.org/follow',
+    image: 'https://mygreenlab.org/wp-content/uploads/2025/08/follow-us-920x613.png',
+  },
+  twitter: {
+    image: 'https://mygreenlab.org/wp-content/uploads/2025/08/follow-us-920x613.png',
+  },
+  jsonLd: [
+    createBreadcrumbSchema([
+      { name: 'Home', url: 'https://mygreenlab.org/' },
+      { name: 'Get Involved', url: '#' },
+      { name: 'Follow', url: 'https://mygreenlab.org/follow' }
+    ]),
+    organizationSchema
+  ]
+});
+
+// Generate metadata for server-side rendering
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: pageMetadata.title,
+    description: pageMetadata.description,
+    keywords: pageMetadata.keywords,
+    openGraph: pageMetadata.openGraph,
+    twitter: pageMetadata.twitter,
+    alternates: {
+      canonical: pageMetadata.canonical,
+    },
+    other: {
+      'application/ld+json': JSON.stringify(pageMetadata.jsonLd),
+    },
+  };
+}
 
 export default function FollowPage() {
   return (
@@ -14,7 +56,7 @@ export default function FollowPage() {
               </svg>
               GET INVOLVED
             </a>
-            <h1 className="text-6xl font-extrabold leading-tight text-gray-900 mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight text-gray-900 mb-6">
               Follow Us
             </h1>
           </div>
@@ -33,7 +75,7 @@ export default function FollowPage() {
         {/* Engagement Matters Section */}
         <div className="py-12 border-t border-gray-200">
           <p className="text-sm font-semibold tracking-widest uppercase text-green-600 mb-2">WHY ENGAGEMENT MATTERS</p>
-          <h2 className="text-4xl font-extrabold text-gray-900 mb-6">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900 mb-6">
             Help science lead the way in sustainability
           </h2>
           <p className="text-lg text-gray-600 max-w-4xl">
@@ -43,7 +85,7 @@ export default function FollowPage() {
 
         {/* Find Us Online Section */}
         <div className="pt-12 pb-24">
-          <h2 className="text-3xl font-extrabold text-gray-900 mb-10">Where to find us online</h2>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-10">Where to find us online</h2>
           <p className="text-lg text-gray-600 mb-12 max-w-4xl">
             Follow us to stay up to date on the latest resources, events, and community stories from around the world. Together, we can transform science.
           </p>
@@ -103,7 +145,7 @@ export default function FollowPage() {
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
             <div className="max-w-3xl">
               <p className="text-sm font-semibold tracking-widest uppercase text-white opacity-80 mb-2">STAY CONNECTED</p>
-              <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">
                 Sign up for our newsletter
               </h2>
               <p className="text-lg opacity-90">

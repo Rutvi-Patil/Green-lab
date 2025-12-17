@@ -1,51 +1,44 @@
-import React from 'react';
+'use client';
+
+import { useEffect } from 'react';
 import HeroSection from '@/components/HeroSection';
-import { createPageMetadata, createBreadcrumbSchema } from '@/utils/metadata';
-import { Metadata } from 'next';
-
-// Page-specific metadata
-const pageMetadata = createPageMetadata({
-  title: 'ACT Ecolabel - Environmental Impact Factor for Laboratory Products',
-  description: 'The world\'s first ecolabel for laboratory products. Make informed, sustainable purchasing decisions with our comprehensive environmental impact scoring system.',
-  keywords: 'ACT ecolabel, laboratory product certification, environmental impact factor, sustainable procurement, green lab products, eco-friendly lab supplies',
-  canonical: 'https://mygreenlab.org/act-ecolabel',
-  openGraph: {
-    type: 'website',
-    url: 'https://mygreenlab.org/act-ecolabel',
-    image: 'https://mygreenlab.org/wp-content/uploads/2025/07/ACT-Hero-Page-Image-Overlay-smaller-650x434.png',
-  },
-  twitter: {
-    image: 'https://mygreenlab.org/wp-content/uploads/2025/07/ACT-Hero-Page-Image-Overlay-smaller-650x434.png',
-  },
-  jsonLd: [
-    createBreadcrumbSchema([
-      { name: 'Home', url: 'https://mygreenlab.org/' },
-      { name: 'ACT Ecolabel', url: 'https://mygreenlab.org/act-ecolabel' }
-    ])
-  ]
-});
-
-// Generate metadata for server-side rendering
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: pageMetadata.title,
-    description: pageMetadata.description,
-    keywords: pageMetadata.keywords,
-    openGraph: pageMetadata.openGraph,
-    twitter: pageMetadata.twitter,
-    alternates: {
-      canonical: pageMetadata.canonical,
-    },
-    other: {
-      'application/ld+json': JSON.stringify(pageMetadata.jsonLd),
-    },
-  };
-}
 
 export default function ActEcolabelPage() {
+  useEffect(() => {
+    // Initialize animations and interactions
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const animationObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const element = entry.target;
+          const delay = parseInt(element.getAttribute('data-animation-delay') || '0');
+
+          setTimeout(() => {
+            element.classList.add('show-on-scroll');
+          }, delay);
+          
+          observer.unobserve(element);
+        }
+      });
+    }, observerOptions);
+
+    // Target all elements marked for animation
+    document.querySelectorAll('.hidden-on-load').forEach(el => {
+      animationObserver.observe(el);
+    });
+
+    return () => {
+      animationObserver.disconnect();
+    };
+  }, []);
+
   return (
     <>
-      
       {/* Hero Section */}
       <HeroSection
         subtitle="SUSTAINABLE PROCUREMENT"

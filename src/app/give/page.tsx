@@ -1,11 +1,56 @@
 'use client';
 
+import React from 'react';
 import DonationForm from '@/components/DonationForm';
 import { Heart, Target, Users, Globe } from 'lucide-react';
+import SEOHead from '@/components/SEOHead';
+import { createPageMetadata, createBreadcrumbSchema, createFAQSchema } from '@/utils/metadata';
+
+// Page-specific metadata
+const pageMetadata = createPageMetadata({
+  title: 'Donate to My Green Lab - Support Sustainable Science | Tax-Deductible',
+  description: 'Support My Green Lab\'s mission to create sustainable science. Your tax-deductible donation helps laboratories worldwide reduce environmental impact through green lab certification and programs.',
+  keywords: 'donate My Green Lab, sustainable science donation, green lab funding, environmental research donation, tax-deductible donation, laboratory sustainability support',
+  canonical: 'https://mygreenlab.org/give',
+  openGraph: {
+    type: 'website',
+    url: 'https://mygreenlab.org/give',
+    image: 'https://mygreenlab.org/wp-content/uploads/2025/07/mygreenlab-logo.png',
+  },
+  twitter: {
+    image: 'https://mygreenlab.org/wp-content/uploads/2025/07/mygreenlab-logo.png',
+  },
+  jsonLd: [
+    createBreadcrumbSchema([
+      { name: 'Home', url: 'https://mygreenlab.org/' },
+      { name: 'Give', url: 'https://mygreenlab.org/give' }
+    ]),
+    createFAQSchema([
+      {
+        question: 'Is my donation tax-deductible?',
+        answer: 'Yes! My Green Lab is a registered 501(c)(3) nonprofit organization. All donations are tax-deductible to the extent allowed by law. You will receive a tax receipt via email for your records.'
+      },
+      {
+        question: 'How is my donation used?',
+        answer: 'Your donation supports our core programs including free resources for scientists, certification programs, educational initiatives, and global community building. Over 85% of funds go directly to program services.'
+      },
+      {
+        question: 'Can I designate my gift for a specific program?',
+        answer: 'Yes! You can specify if you\'d like your donation to support a particular program or initiative. Simply include this information in the notes section of your donation or contact us directly.'
+      },
+      {
+        question: 'Do you accept donations from outside the United States?',
+        answer: 'Absolutely! We accept donations from around the world through various payment methods including credit card, PayPal, and bank transfers. Contact us for international donation options.'
+      }
+    ])
+  ]
+});
 
 export default function GivePage() {
   return (
-    <div className="font-sans text-gray-900 bg-white">
+    <>
+      <SEOHead metadata={pageMetadata} />
+      <div className="font-sans text-gray-900 bg-white">
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-mgl-lime to-mgl-lime/80 py-20 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -253,6 +298,7 @@ export default function GivePage() {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 }

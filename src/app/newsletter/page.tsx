@@ -1,71 +1,61 @@
 'use client';
 
-import { useState } from 'react';
+import React from 'react';
+import NewsletterForm from '@/components/NewsletterForm';
+import SEOHead from '@/components/SEOHead';
+import { createPageMetadata, createBreadcrumbSchema, createFAQSchema } from '@/utils/metadata';
+
+// Page-specific metadata
+const pageMetadata = createPageMetadata({
+  title: 'My Green Lab Newsletter - Laboratory Sustainability Updates | Subscribe',
+  description: 'Subscribe to My Green Lab newsletter for latest laboratory sustainability updates, green lab certification news, expert insights, and exclusive content for sustainable science professionals.',
+  keywords: 'My Green Lab newsletter, laboratory sustainability newsletter, green lab updates, sustainable science news, lab certification updates, environmental research newsletter',
+  canonical: 'https://mygreenlab.org/newsletter',
+  openGraph: {
+    type: 'website',
+    url: 'https://mygreenlab.org/newsletter',
+    image: 'https://mygreenlab.org/wp-content/uploads/2025/07/mygreenlab-logo.png',
+  },
+  twitter: {
+    image: 'https://mygreenlab.org/wp-content/uploads/2025/07/mygreenlab-logo.png',
+  },
+  jsonLd: [
+    createBreadcrumbSchema([
+      { name: 'Home', url: 'https://mygreenlab.org/' },
+      { name: 'Newsletter', url: 'https://mygreenlab.org/newsletter' }
+    ]),
+    createFAQSchema([
+      {
+        question: 'How often will I receive the newsletter?',
+        answer: 'We send our newsletter monthly, with occasional special announcements for important updates, events, or time-sensitive sustainability news.'
+      },
+      {
+        question: 'Can I unsubscribe at any time?',
+        answer: 'Yes! Every newsletter includes an easy unsubscribe link. You can also manage your subscription preferences or update your email address at any time.'
+      },
+      {
+        question: 'What type of content is included in the newsletter?',
+        answer: 'Our newsletter includes program updates, certification news, expert sustainability tips, success stories from labs worldwide, upcoming events, and exclusive resources for laboratory professionals.'
+      },
+      {
+        question: 'Is my email address shared with third parties?',
+        answer: 'Never! We respect your privacy and never share or sell your email address to third parties. Your information is used solely for My Green Lab communications.'
+      }
+    ])
+  ]
+});
 
 export default function NewsletterPage() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    organization: '',
-    interests: {
-      certification: false,
-      act: false,
-      accredited: false,
-      resources: false
-    },
-    consent: false
-  });
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = e.target;
-    
-    if (type === 'checkbox') {
-      if (name === 'consent') {
-        setFormData(prev => ({ ...prev, consent: checked }));
-      } else {
-        setFormData(prev => ({
-          ...prev,
-          interests: {
-            ...prev.interests,
-            [name]: checked
-          }
-        }));
-      }
-    } else {
-      setFormData(prev => ({ ...prev, [name]: value }));
-    }
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (formData.name && formData.email && formData.consent) {
-      alert('Thank you for subscribing to our newsletter! You will receive a confirmation email shortly.');
-      setFormData({
-        name: '',
-        email: '',
-        organization: '',
-        interests: {
-          certification: false,
-          act: false,
-          accredited: false,
-          resources: false
-        },
-        consent: false
-      });
-    } else {
-      alert('Please fill in all required fields and accept the consent checkbox.');
-    }
-  };
-
   return (
-  <div className="bg-white">
+    <>
+      <SEOHead metadata={pageMetadata} />
+      <div className="bg-white">
 
       {/* Hero Section */}
       <section className="relative pt-16 pb-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-6">
               Stay Connected
             </h1>
             <p className="text-base text-gray-600 mb-8 max-w-3xl mx-auto">
@@ -82,7 +72,7 @@ export default function NewsletterPage() {
             
             {/* Content Column */}
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">
                 Why Subscribe to Our Newsletter?
               </h2>
               
@@ -143,132 +133,7 @@ export default function NewsletterPage() {
 
             {/* Form Column */}
             <div>
-              <div className="bg-gray-50 p-8 rounded-xl">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Subscribe Now</h3>
-                
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  {/* Name */}
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
-                    <input 
-                      id="name" 
-                      name="name" 
-                      type="text" 
-                      required 
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500 transition duration-150" 
-                      placeholder="John Doe"
-                    />
-                  </div>
-
-                  {/* Email */}
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-                    <input 
-                      id="email" 
-                      name="email" 
-                      type="email" 
-                      required 
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500 transition duration-150" 
-                      placeholder="john@example.com"
-                    />
-                  </div>
-
-                  {/* Organization */}
-                  <div>
-                    <label htmlFor="organization" className="block text-sm font-medium text-gray-700 mb-2">Organization (Optional)</label>
-                    <input 
-                      id="organization" 
-                      name="organization" 
-                      type="text" 
-                      value={formData.organization}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500 transition duration-150" 
-                      placeholder="University or Company Name"
-                    />
-                  </div>
-
-                  {/* Interests */}
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Areas of Interest</label>
-                    <div className="space-y-2">
-                      <label className="flex items-center">
-                        <input 
-                          type="checkbox" 
-                          name="certification" 
-                          checked={formData.interests.certification}
-                          onChange={handleInputChange}
-                          className="h-4 w-4 text-green-500 focus:ring-green-500 border-gray-300 rounded mr-2" 
-                        />
-                        <span className="text-sm text-gray-700">My Green Lab Certification</span>
-                      </label>
-                      <label className="flex items-center">
-                        <input 
-                          type="checkbox" 
-                          name="act" 
-                          checked={formData.interests.act}
-                          onChange={handleInputChange}
-                          className="h-4 w-4 text-green-500 focus:ring-green-500 border-gray-300 rounded mr-2" 
-                        />
-                        <span className="text-sm text-gray-700">ACT Ecolabel</span>
-                      </label>
-                      <label className="flex items-center">
-                        <input 
-                          type="checkbox" 
-                          name="accredited" 
-                          checked={formData.interests.accredited}
-                          onChange={handleInputChange}
-                          className="h-4 w-4 text-green-500 focus:ring-green-500 border-gray-300 rounded mr-2" 
-                        />
-                        <span className="text-sm text-gray-700">Accredited Professionals</span>
-                      </label>
-                      <label className="flex items-center">
-                        <input 
-                          type="checkbox" 
-                          name="resources" 
-                          checked={formData.interests.resources}
-                          onChange={handleInputChange}
-                          className="h-4 w-4 text-green-500 focus:ring-green-500 border-gray-300 rounded mr-2" 
-                        />
-                        <span className="text-sm text-gray-700">Resources & Guides</span>
-                      </label>
-                    </div>
-                  </div>
-
-                  {/* Consent */}
-                  <div>
-                    <label className="flex items-start">
-                      <input 
-                        type="checkbox" 
-                        name="consent" 
-                        required 
-                        checked={formData.consent}
-                        onChange={handleInputChange}
-                        className="h-4 w-4 text-green-500 focus:ring-green-500 border-gray-300 rounded mt-1 mr-2" 
-                      />
-                      <span className="text-sm text-gray-700">I agree to receive occasional newsletters and updates from My Green Lab. I understand I can unsubscribe at any time.</span>
-                    </label>
-                  </div>
-
-                  {/* Submit Button */}
-                  <div>
-                    <button 
-                      type="submit" 
-                      className="w-full py-3 px-4 text-lg font-semibold rounded-full bg-green-500 text-white hover:bg-green-600 transition duration-300 shadow-lg"
-                    >
-                      Subscribe to Newsletter
-                    </button>
-                  </div>
-                </form>
-
-                {/* Privacy Note */}
-                <p className="text-xs text-gray-500 mt-4 text-center">
-                  We respect your privacy. Your information will be used in accordance with our <a href="/data-privacy" className="text-green-500 hover:underline">Data Privacy Policy</a>.
-                </p>
-              </div>
+              <NewsletterForm />
             </div>
           </div>
         </div>
@@ -278,7 +143,7 @@ export default function NewsletterPage() {
       <section className="py-20 bg-blue-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
               What Our Subscribers Say
             </h2>
             <p className="text-gray-700 max-w-3xl mx-auto">
@@ -326,6 +191,7 @@ export default function NewsletterPage() {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 }

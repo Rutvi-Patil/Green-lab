@@ -1,4 +1,56 @@
-'use client';
+import { Metadata } from 'next';
+import { createPageMetadata, createBreadcrumbSchema } from '@/utils/metadata';
+
+// Page-specific metadata
+const pageMetadata = createPageMetadata({
+  title: 'Sitemap | My Green Lab - Complete Site Navigation',
+  description: 'Complete sitemap of My Green Lab website. Navigate through all pages including certification programs, resources, events, and lab sustainability initiatives.',
+  keywords: 'My Green Lab sitemap, site navigation, laboratory sustainability pages, green lab programs, certification pages, resources directory',
+  canonical: 'https://mygreenlab.org/sitemap',
+  openGraph: {
+    type: 'website',
+    url: 'https://mygreenlab.org/sitemap',
+    image: 'https://mygreenlab.org/wp-content/uploads/2025/07/mygreenlab-logo.png',
+  },
+  twitter: {
+    image: 'https://mygreenlab.org/wp-content/uploads/2025/07/mygreenlab-logo.png',
+  },
+  jsonLd: [
+    createBreadcrumbSchema([
+      { name: 'Home', url: 'https://mygreenlab.org/' },
+      { name: 'Sitemap', url: 'https://mygreenlab.org/sitemap' }
+    ]),
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      name: 'Sitemap',
+      description: 'Complete sitemap of My Green Lab website with all available pages and sections.',
+      url: 'https://mygreenlab.org/sitemap',
+      isPartOf: {
+        '@type': 'WebSite',
+        name: 'My Green Lab',
+        url: 'https://mygreenlab.org'
+      }
+    }
+  ]
+});
+
+// Generate metadata for server-side rendering
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: pageMetadata.title,
+    description: pageMetadata.description,
+    keywords: pageMetadata.keywords,
+    openGraph: pageMetadata.openGraph,
+    twitter: pageMetadata.twitter,
+    alternates: {
+      canonical: pageMetadata.canonical,
+    },
+    other: {
+      'application/ld+json': JSON.stringify(pageMetadata.jsonLd),
+    },
+  };
+}
 
 export default function SitemapPage() {
   return (
@@ -8,7 +60,7 @@ export default function SitemapPage() {
       <section className="relative pt-16 pb-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-6">
               Sitemap
             </h1>
             <p className="text-base text-gray-600 mb-8 max-w-3xl mx-auto">

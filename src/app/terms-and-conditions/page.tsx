@@ -1,7 +1,62 @@
-export const metadata = {
-  title: 'Terms and Conditions - My Green Lab',
-  description: 'Read My Green Lab\'s terms and conditions for using our website, services, and certification programs.',
-};
+import { Metadata } from 'next';
+import { createPageMetadata, createBreadcrumbSchema, createFAQSchema } from '@/utils/metadata';
+
+// Page-specific metadata
+const pageMetadata = createPageMetadata({
+  title: 'Terms and Conditions | My Green Lab - Legal Terms & Usage Policies',
+  description: 'Read My Green Lab\'s complete terms and conditions for website usage, certification programs, and services. Understand your rights and responsibilities when using our green lab services.',
+  keywords: 'My Green Lab terms and conditions, legal terms, usage policies, certification terms, service agreement, website terms, green lab legal, laboratory certification terms',
+  canonical: 'https://mygreenlab.org/terms-and-conditions',
+  openGraph: {
+    type: 'website',
+    url: 'https://mygreenlab.org/terms-and-conditions',
+    image: 'https://mygreenlab.org/wp-content/uploads/2025/07/mygreenlab-logo.png',
+  },
+  twitter: {
+    image: 'https://mygreenlab.org/wp-content/uploads/2025/07/mygreenlab-logo.png',
+  },
+  jsonLd: [
+    createBreadcrumbSchema([
+      { name: 'Home', url: 'https://mygreenlab.org/' },
+      { name: 'Terms and Conditions', url: 'https://mygreenlab.org/terms-and-conditions' }
+    ]),
+    createFAQSchema([
+      {
+        question: 'What services are covered by My Green Lab terms and conditions?',
+        answer: 'Our terms cover My Green Lab Certification Program, ACT Ecolabel Program, Accredited Professionals Program, educational resources, consulting services, events, and all website usage.'
+      },
+      {
+        question: 'What are my responsibilities as a user of My Green Lab services?',
+        answer: 'Users must provide accurate information, maintain account security, use services lawfully, not attempt unauthorized access, avoid service disruption, and comply with applicable laws.'
+      },
+      {
+        question: 'How does My Green Lab protect intellectual property?',
+        answer: 'All content, trademarks, service marks, and intellectual property on our website are exclusive property of My Green Lab and cannot be used without prior written consent.'
+      },
+      {
+        question: 'What happens if certification terms are violated?',
+        answer: 'My Green Lab reserves the right to revoke certification for non-compliance. Certified laboratories must maintain ongoing compliance and use certification marks properly.'
+      }
+    ])
+  ]
+});
+
+// Generate metadata for server-side rendering
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: pageMetadata.title,
+    description: pageMetadata.description,
+    keywords: pageMetadata.keywords,
+    openGraph: pageMetadata.openGraph,
+    twitter: pageMetadata.twitter,
+    alternates: {
+      canonical: pageMetadata.canonical,
+    },
+    other: {
+      'application/ld+json': JSON.stringify(pageMetadata.jsonLd),
+    },
+  };
+}
 
 export default function TermsAndConditionsPage() {
   return (
@@ -10,7 +65,7 @@ export default function TermsAndConditionsPage() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-6">
               Terms and Conditions
             </h1>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -27,7 +82,7 @@ export default function TermsAndConditionsPage() {
             
             {/* Introduction */}
             <div className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">1. Introduction</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">1. Introduction</h2>
               <p className="text-gray-600 mb-4">
                 Welcome to My Green Lab. These Terms and Conditions govern your use of our website, services, and certification programs (collectively, the "Services"). By accessing or using our Services, you agree to be bound by these Terms and Conditions.
               </p>
@@ -38,7 +93,7 @@ export default function TermsAndConditionsPage() {
 
             {/* Acceptance of Terms */}
             <div className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">2. Acceptance of Terms</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">2. Acceptance of Terms</h2>
               <p className="text-gray-600 mb-4">
                 By accessing and using this website, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.
               </p>
@@ -46,7 +101,7 @@ export default function TermsAndConditionsPage() {
 
             {/* Services Description */}
             <div className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">3. Services Description</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">3. Services Description</h2>
               <div className="space-y-4 text-gray-600">
                 <p>
                   My Green Lab provides the following services:
@@ -64,7 +119,7 @@ export default function TermsAndConditionsPage() {
 
             {/* User Responsibilities */}
             <div className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">4. User Responsibilities</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">4. User Responsibilities</h2>
               <div className="space-y-4 text-gray-600">
                 <p>As a user of our Services, you agree to:</p>
                 <ul className="list-disc pl-6 space-y-2">
@@ -80,7 +135,7 @@ export default function TermsAndConditionsPage() {
 
             {/* Certification Program Terms */}
             <div className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">5. Certification Program Terms</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">5. Certification Program Terms</h2>
               <div className="space-y-4 text-gray-600">
                 <p>Specific terms apply to our certification programs:</p>
                 <ul className="list-disc pl-6 space-y-2">
@@ -95,7 +150,7 @@ export default function TermsAndConditionsPage() {
 
             {/* Intellectual Property */}
             <div className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">6. Intellectual Property</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">6. Intellectual Property</h2>
               <p className="text-gray-600 mb-4">
                 All content, trademarks, service marks, logos, and intellectual property on this website are the exclusive property of My Green Lab. You may not use, reproduce, or distribute any of our intellectual property without prior written consent.
               </p>
@@ -106,7 +161,7 @@ export default function TermsAndConditionsPage() {
 
             {/* Privacy and Data Protection */}
             <div className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">7. Privacy and Data Protection</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">7. Privacy and Data Protection</h2>
               <p className="text-gray-600 mb-4">
                 Your privacy is important to us. Please review our Privacy Policy to understand how we collect, use, and protect your personal information.
               </p>
@@ -117,7 +172,7 @@ export default function TermsAndConditionsPage() {
 
             {/* Limitation of Liability */}
             <div className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">8. Limitation of Liability</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">8. Limitation of Liability</h2>
               <p className="text-gray-600 mb-4">
                 My Green Lab shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your use of the Services.
               </p>
@@ -128,7 +183,7 @@ export default function TermsAndConditionsPage() {
 
             {/* Indemnification */}
             <div className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">9. Indemnification</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">9. Indemnification</h2>
               <p className="text-gray-600">
                 You agree to indemnify and hold My Green Lab harmless from any claims, damages, or expenses arising from your use of the Services, violation of these Terms, or violation of any rights of another.
               </p>
@@ -136,7 +191,7 @@ export default function TermsAndConditionsPage() {
 
             {/* Termination */}
             <div className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">10. Termination</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">10. Termination</h2>
               <p className="text-gray-600 mb-4">
                 My Green Lab may terminate or suspend your access to our Services immediately, without prior notice or liability, for any reason whatsoever, including without limitation if you breach the Terms.
               </p>
@@ -147,7 +202,7 @@ export default function TermsAndConditionsPage() {
 
             {/* Governing Law */}
             <div className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">11. Governing Law</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">11. Governing Law</h2>
               <p className="text-gray-600">
                 These Terms and Conditions shall be governed by and construed in accordance with the laws of the State of Massachusetts, United States, without regard to its conflict of law provisions.
               </p>
@@ -155,7 +210,7 @@ export default function TermsAndConditionsPage() {
 
             {/* Changes to Terms */}
             <div className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">12. Changes to Terms</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">12. Changes to Terms</h2>
               <p className="text-gray-600">
                 My Green Lab reserves the right to modify these Terms and Conditions at any time. We will notify users of any changes by posting the new Terms and Conditions on this page and updating the "Last updated" date.
               </p>
@@ -163,7 +218,7 @@ export default function TermsAndConditionsPage() {
 
             {/* Contact Information */}
             <div className="mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">13. Contact Information</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">13. Contact Information</h2>
               <p className="text-gray-600 mb-4">
                 If you have any questions about these Terms and Conditions, please contact us:
               </p>
