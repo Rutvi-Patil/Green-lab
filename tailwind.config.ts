@@ -33,6 +33,9 @@ const config: Config = {
         "join-float": "joinFloat 9s ease-in-out infinite",
         "join-drift-right": "joinDriftRight 18s ease-in-out infinite",
         "join-drift-down": "joinDriftDown 16s ease-in-out infinite",
+        "fade-left": "fadeLeft 1s forwards",
+        "fade-right": "fadeRight 1s forwards",
+        "fade-up": "fadeUp 1s forwards",
       },
       keyframes: {
         "cta-bounce": {
@@ -58,6 +61,21 @@ const config: Config = {
           "0%": { transform: "translate(0,0)" },
           "50%": { transform: "translate(-10px,12px)" },
           "100%": { transform: "translate(0,0)" },
+        },
+        "fadeLeft": {
+          "0%": { opacity: "0", right: "-40px" },
+          "75%": { right: "0" },
+          "100%": { opacity: "1", right: "0" },
+        },
+        "fadeRight": {
+          "0%": { opacity: "0", left: "-40px" },
+          "75%": { left: "0" },
+          "100%": { opacity: "1", left: "0" },
+        },
+        "fadeUp": {
+          "0%": { opacity: "0", top: "40px" },
+          "75%": { top: "0" },
+          "100%": { opacity: "1", top: "0" },
         },
       },
     },

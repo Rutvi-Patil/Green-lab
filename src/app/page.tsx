@@ -33,7 +33,7 @@ export default function HomePage() {
                 by helping labs to reduce their environmental impact.
               </p>
               <Link href="/certification"
-                 className="inline-flex items-center px-8 py-3 sm:py-3.5 bg-mgl-lime text-white text-xs sm:text-sm font-bold rounded-full shadow-lg hover:bg-opacity-90 transition w-fit">
+                 className="inline-flex items-center px-8 py-3 sm:py-3.5 bg-mgl-lime text-white text-xs sm:text-sm font-bold rounded-full shadow-lg hover:bg-opacity-90 transition-colors duration-300 w-fit cta-bounce">
                 GREEN YOUR LAB
                 <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
@@ -80,7 +80,7 @@ export default function HomePage() {
                   conserve energy, and cut carbon emissions.
                 </p>
               </div>
-              <a href="#" className="mt-2 lg:mt-0 text-mgl-dark font-bold flex items-center space-x-2 hover:text-mgl-lime transition">
+              <a href="#" className="mt-2 lg:mt-0 text-mgl-dark font-bold flex items-center space-x-2 hover:text-mgl-lime transition-colors duration-150">
                 <span>Request a free lab assessment</span>
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
@@ -129,7 +129,7 @@ export default function HomePage() {
                 and collective action. Our work is rooted in three core principles:
               </p>
             </div>
-            <a href="#" className="hidden lg:inline-flex text-mgl-dark font-bold items-center space-x-2 hover:text-mgl-lime transition">
+            <a href="#" className="hidden lg:inline-flex text-mgl-dark font-bold items-center space-x-2 hover:text-mgl-lime transition-colors duration-150">
               <span>Read more about us</span>
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
@@ -139,7 +139,7 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="group bg-white rounded-2xl p-4 pb-6 shadow-sm border border-gray-200/60">
-              <img src="https://plus.unsplash.com/premium_photo-1663011406193-a7e54f0285b31?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop"
+              <img src="https://mygreenlab.org/wp-content/uploads/2025/07/AdobeStock_Scientists-w-lab-coats-scaled-1290x860.jpeg"
                    alt="Lab workers looking at equipment"
                    className="w-full h-48 object-cover rounded-xl mb-4" />
               <h3 className="text-xl font-bold text-mgl-dark mb-2">Set the global standard</h3>

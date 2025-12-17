@@ -64,7 +64,7 @@ const TimelineStep: React.FC<TimelineStepProps> = ({
       `}
       style={{ transitionDelay: `${delay}ms` }}
     >
-      {/* Timeline Line
+      {/* Timeline Line */}
       <div className="flex flex-col items-center mr-6">
         <div
           className={`
@@ -87,8 +87,8 @@ const TimelineStep: React.FC<TimelineStepProps> = ({
           )}
         </div>
         {/* Vertical Line */}
-        {/* <div className={`w-0.5 h-20 mt-2 ${getLineColor()}`} /> */}
-      </div> */}
+        <div className={`w-0.5 h-20 mt-2 ${getLineColor()}`} />
+      </div>
 
       {/* Content */}
       <div className="flex-1 bg-white rounded-xl p-6 shadow-lg card-elevated">

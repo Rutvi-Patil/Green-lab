@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import HeroSection from '@/components/HeroSection';
 
 export default function ActEcolabelPage() {
   useEffect(() => {
@@ -38,38 +39,18 @@ export default function ActEcolabelPage() {
 
   return (
     <>
-
       {/* Hero Section */}
-      <section className="relative py-20 lg:py-32 overflow-hidden bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Content Column */}
-            <div className="text-center lg:text-left">
-              <p className="text-sm tracking-widest uppercase font-semibold text-gray-500 mb-4">Verified Lab Product Sustainability</p>
-              <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-6">
-                The My Green Lab<sup className="text-green-500 font-normal text-2xl">®</sup> ACT<sup className="text-green-500 font-normal text-2xl">®</sup> Ecolabel
-              </h1>
-              <p className="text-lg text-gray-600 mb-8 max-w-xl mx-auto lg:mx-0">
-                The ACT Ecolabel for lab equipment and supplies provides transparent, third-party verified sustainability data.
-              </p>
-              <a href="#" className="inline-block py-3 px-8 text-lg font-semibold rounded-full bg-green-500 text-white hover:bg-green-600 transition duration-300 shadow-lg transform hover:scale-[1.02]">
-                Certify your products
-              </a>
-            </div>
+      <HeroSection
+        subtitle="SUSTAINABLE PROCUREMENT"
+        title="ACT Ecolabel"
+        description="The world's first ecolabel for laboratory products. Make informed, sustainable purchasing decisions with our comprehensive environmental impact scoring system."
+        primaryCta={{ text: "Explore ACT Products", href: "#" }}
+        imageSrc="https://mygreenlab.org/wp-content/uploads/2025/07/ACT-Hero-Page-Image-Overlay-smaller-650x434.png"
+        imageAlt="ACT Ecolabel certified products"
+        imagePosition="right"
+      />
 
-            {/* Image Column */}
-            <div className="flex justify-center items-center">
-              <img 
-                src="https://mygreenlab.org/wp-content/uploads/2025/07/ACT-Hero-Page-Image-Overlay-smaller-650x434.png" 
-                alt="Male holding a handheld device with the digital ACT Ecolabel image" 
-                className="w-full h-auto rounded-xl shadow-2xl object-cover"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Database Access CTA Section */}
+      {/* Database Access CTA Section
       <section className="py-16 bg-green-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-2xl shadow-lg p-8 lg:p-12">
@@ -100,22 +81,28 @@ export default function ActEcolabelPage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Video Section */}
-      <section className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="aspect-w-16 aspect-h-9">
-            <iframe 
-              src="https://player.vimeo.com/video/1082285577" 
-              className="w-full h-full rounded-xl shadow-lg"
-              frameBorder="0" 
-              allow="autoplay; fullscreen" 
-              allowFullScreen
-            ></iframe>
-          </div>
-        </div>
-      </section>
+<section className="py-20 bg-white">
+  {/* Changed max-w-7xl to max-w-[1600px] or screen-2xl for more size */}
+  <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    {/* 1. Use aspect-video (16:9) for standard large feel, or keep 21/9 for ultrawide.
+      2. Added 'relative' and used 'absolute' inset-0 on the iframe to ensure it fills the box.
+    */}
+    <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl bg-black">
+      <iframe 
+        src="https://player.vimeo.com/video/1082285577" 
+        className="absolute inset-0 w-full h-full"
+        frameBorder="0" 
+        allow="autoplay; fullscreen" 
+        allowFullScreen
+      ></iframe>
+    </div>
+    
+  </div>
+</section>
 
       {/* What's in ACT Section */}
       <section className="py-16 bg-gray-50">
@@ -235,6 +222,7 @@ export default function ActEcolabelPage() {
           <div className="space-y-12">
             {/* For Scientists */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center p-8 bg-gray-50 rounded-xl">
+              {/* Left Column - Title */}
               <div>
                 <p className="text-sm tracking-widest uppercase font-semibold text-green-600 mb-2">For Scientists</p>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
@@ -242,21 +230,22 @@ export default function ActEcolabelPage() {
                     Adopt greener lab products
                   </a>
                 </h3>
+              </div>
+              
+              {/* Right Column - Description + Text */}
+              <div>
                 <p className="text-lg text-gray-600 mb-6">
                   Use reliable, third-party verified sustainability data when choosing equipment, consumables, and reagents for your research.
                 </p>
-                <a 
-                  href="https://actdatabase.mygreenlab.org/" 
-                  target="_blank"
-                  className="inline-block py-2 px-6 text-base font-semibold rounded-full border border-green-500 text-green-500 hover:bg-green-500 hover:text-white transition duration-300"
-                >
+                <p className="text-base font-semibold text-green-600">
                   Explore the database
-                </a>
+                </p>
               </div>
             </div>
 
             {/* For Manufacturers */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center p-8 bg-gray-50 rounded-xl">
+              {/* Left Column - Title */}
               <div>
                 <p className="text-sm tracking-widest uppercase font-semibold text-green-600 mb-2">For Manufacturers</p>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
@@ -264,20 +253,22 @@ export default function ActEcolabelPage() {
                     Showcase sustainability accomplishment
                   </a>
                 </h3>
+              </div>
+              
+              {/* Right Column - Description + Text */}
+              <div>
                 <p className="text-lg text-gray-600 mb-6">
                   Use the ACT Ecolabel to demonstrate verified environmental performance, eliminate custom questionnaires, and align with customers' procurement expectations.
                 </p>
-                <a 
-                  href="#" 
-                  className="inline-block py-2 px-6 text-base font-semibold rounded-full border border-green-500 text-green-500 hover:bg-green-500 hover:text-white transition duration-300"
-                >
+                <p className="text-base font-semibold text-green-600">
                   For Manufacturers
-                </a>
+                </p>
               </div>
             </div>
 
             {/* For Procurement */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center p-8 bg-gray-50 rounded-xl">
+              {/* Left Column - Title */}
               <div>
                 <p className="text-sm tracking-widest uppercase font-semibold text-green-600 mb-2">For Procurement</p>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
@@ -285,15 +276,16 @@ export default function ActEcolabelPage() {
                     Simplify sustainable purchasing
                   </a>
                 </h3>
+              </div>
+              
+              {/* Right Column - Description + Text */}
+              <div>
                 <p className="text-lg text-gray-600 mb-6">
                   Simplify product and supplier comparisons with standardized sustainability scoring and product-level CO₂e data to support Scope 3 carbon reduction goals.
                 </p>
-                <a 
-                  href="#" 
-                  className="inline-block py-2 px-6 text-base font-semibold rounded-full border border-green-500 text-green-500 hover:bg-green-500 hover:text-white transition duration-300"
-                >
+                <p className="text-base font-semibold text-green-600">
                   For Procurement
-                </a>
+                </p>
               </div>
             </div>
           </div>
@@ -342,9 +334,14 @@ export default function ActEcolabelPage() {
           <div className="space-y-8">
             {/* Impact-Focused Scoring */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center p-8 bg-gray-50 rounded-xl">
+              {/* Left Column - Title */}
               <div>
                 <p className="text-sm tracking-widest uppercase font-semibold text-green-600 mb-2">Impact-Focused Scoring</p>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Weighted 100-point system</h3>
+              </div>
+              
+              {/* Right Column - Description */}
+              <div>
                 <p className="text-lg text-gray-600">
                   The updated 100-point science-based scoring system ensures that categories with the most impact on the environment receive appropriate focus and relevance to procurement decision makers.
                 </p>
@@ -353,9 +350,14 @@ export default function ActEcolabelPage() {
 
             {/* Carbon Reporting */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center p-8 bg-gray-50 rounded-xl">
+              {/* Left Column - Title */}
               <div>
                 <p className="text-sm tracking-widest uppercase font-semibold text-green-600 mb-2">Carbon Reporting</p>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Product carbon footprint</h3>
+              </div>
+              
+              {/* Right Column - Description */}
+              <div>
                 <p className="text-lg text-gray-600">
                   ACT 2.0 includes available company and product-level CO₂e data to support Scope 3 emissions tracking and sustainable procurement policies.
                 </p>
@@ -364,9 +366,14 @@ export default function ActEcolabelPage() {
 
             {/* Visual Clarity */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center p-8 bg-gray-50 rounded-xl">
+              {/* Left Column - Title */}
               <div>
                 <p className="text-sm tracking-widest uppercase font-semibold text-green-600 mb-2">Visual Clarity</p>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Improved communication</h3>
+              </div>
+              
+              {/* Right Column - Description */}
+              <div>
                 <p className="text-lg text-gray-600">
                   ACT now directly and clearly communicates sustainability attributes with clear scoring, color-coded accomplishments, and better visual organization, making sustainability data easy to assess.
                 </p>
@@ -375,9 +382,14 @@ export default function ActEcolabelPage() {
 
             {/* Global Recognition */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center p-8 bg-gray-50 rounded-xl">
+              {/* Left Column - Title */}
               <div>
                 <p className="text-sm tracking-widest uppercase font-semibold text-green-600 mb-2">Global Recognition</p>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">One global ecolabel</h3>
+              </div>
+              
+              {/* Right Column - Description */}
+              <div>
                 <p className="text-lg text-gray-600">
                   ACT 2.0 is the global standard, providing a single label valid in all markets worldwide to support international sales strategies and procurement alignment.
                 </p>
@@ -386,9 +398,14 @@ export default function ActEcolabelPage() {
 
             {/* Scalable Certification Pricing */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center p-8 bg-gray-50 rounded-xl">
+              {/* Left Column - Title */}
               <div>
                 <p className="text-sm tracking-widest uppercase font-semibold text-green-600 mb-2">Scalable Certification Pricing</p>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Built to address large portfolios</h3>
+              </div>
+              
+              {/* Right Column - Description */}
+              <div>
                 <p className="text-lg text-gray-600">
                   A streamlined certification process that ties into existing data systems and scaled pricing supports certification across product portfolios and companies.
                 </p>
@@ -397,9 +414,14 @@ export default function ActEcolabelPage() {
 
             {/* Global Regulatory Alignment */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center p-8 bg-gray-50 rounded-xl">
+              {/* Left Column - Title */}
               <div>
                 <p className="text-sm tracking-widest uppercase font-semibold text-green-600 mb-2">Global Regulatory Alignment</p>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Reduce risk and communicate with integrity</h3>
+              </div>
+              
+              {/* Right Column - Description */}
+              <div>
                 <p className="text-lg text-gray-600">
                   The ACT Ecolabel is approved by the U.S. EPA and aligned with EU and other global regulations on environmental claims, ensuring clear communication and reducing regulatory risk.
                 </p>
