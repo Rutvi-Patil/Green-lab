@@ -83,17 +83,6 @@ html {
   background-color: var(--mgl-join-teal); 
 }
 
-/* Mobile menu animations */
-#mobile-menu {
-  transform: translateY(-10px);
-  opacity: 0;
-  transition: all 0.3s ease-out;
-}
-
-#mobile-menu.open {
-  opacity: 1;
-  transform: translateY(0);
-}
 
 /* Animation utilities */
 .reveal-up {
